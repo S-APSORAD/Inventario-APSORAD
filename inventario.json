@@ -16,5 +16,14 @@
     "ACTIVO": "Activo",
     "ASIGNADO": "Hospital de Quillota",
     "OBSERVACIONES": "22 de marzo se instaló el PACS DALCA."
+  },
+  {
+    "ID": "APSO-003",
+    "EQUIPO": "PC Dell",
+    "MARCA": "Dell",
+    "MODELO": "Dell T160",
+    "ACTIVO": "Activo",
+    "ASIGNADO": "HOSPITAL ERNESTO TORRES GALDAMES",
+    "OBSERVACIONES": "Equipo operativo."
   }
 ]

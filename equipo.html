@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha de Equipo</title>
+</head>
+<body>
+    <div id="detalle">Cargando detalles del equipo...</div>
+    <a href="index.html">← Volver al Inventario</a>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const idBuscado = params.get('id');
+
+        fetch('inventario.json')
+            .then(res => res.json())
+            .then(data => {
+                const equipo = data.find(e => e.ID === idBuscado);
+                if (equipo) {
+                    document.getElementById('detalle').innerHTML = `
+                        <h1>Equipo: ${equipo.EQUIPO}</h1>
+                        <p><b>ID:</b> ${equipo.ID}</p>
+                        <p><b>Ubicación:</b> ${equipo.ASIGNADO}</p>
+                        <p><b>Observaciones:</b> ${equipo.OBSERVACIONES}</p>
+                    `;
+                } else {
+                    document.getElementById('detalle').innerHTML = "Equipo no encontrado.";
+                }
+            });
+    </script>
+</body>
+</html>

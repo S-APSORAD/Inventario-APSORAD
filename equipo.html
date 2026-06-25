@@ -5,7 +5,7 @@
     <title>Ficha Técnica</title>
 </head>
 <body>
-    <div id="detalle">Cargando...</div>
+    <div id="detalle">Cargando información...</div>
 
     <script>
         const params = new URLSearchParams(window.location.search);
@@ -18,16 +18,19 @@
                 
                 if (equipo) {
                     document.getElementById('detalle').innerHTML = `
-                        <h1>${equipo.EQUIPO}</h1>
+                        <h1>Equipo: ${equipo.EQUIPO}</h1>
                         <p><b>ID:</b> ${equipo.IDENTIFICACION}</p>
                         <p><b>Estado:</b> ${equipo.ACTIVO}</p>
                         <p><b>Ubicación:</b> ${equipo.ASIGNADO}</p>
                         <p><b>Observaciones:</b> ${equipo.OBSERVACIONES}</p>
-                        <a href="index.html">Volver</a>
+                        <a href="index.html">← Volver al Inventario</a>
                     `;
                 } else {
                     document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>No se encontró el equipo: " + idBuscado + "</p><a href='index.html'>Volver</a>";
                 }
+            })
+            .catch(err => {
+                document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>No se pudo cargar el archivo inventario.json</p>";
             });
     </script>
 </body>

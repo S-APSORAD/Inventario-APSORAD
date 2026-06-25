@@ -1,26 +1,20 @@
 [
   {
-    "ID": "APSO-001",
+    "IDENTIFICACION": "APSO-001",
     "EQUIPO": "MacBook Pro",
     "MARCA": "Mac",
     "MODELO": "MacBook Pro 2012",
-    "SN": "C1MQH8KCDTY3",
     "ACTIVO": "Activo",
     "ASIGNADO": "Hospital de Curicó",
-    "HISTORIAL": [
-      { "fecha": "2025-01-09", "accion": "Instalación inicial" }
-    ]
+    "OBSERVACIONES": "Se instala el equipo el dia 9 de Enero de 2025."
   },
   {
-    "ID": "APSO-002",
+    "IDENTIFICACION": "APSO-002",
     "EQUIPO": "Servidor Rackeable",
     "MARCA": "Dell",
-    "MODELO": "PowerEdge R350",
-    "SN": "N/A",
+    "MODELO": "Dell R350 Xeon",
     "ACTIVO": "Activo",
     "ASIGNADO": "Hospital de Quillota",
-    "HISTORIAL": [
-      { "fecha": "2026-03-22", "accion": "Instalación PACS" }
-    ]
+    "OBSERVACIONES": "22 de marzo se instalo el PACS DALCA."
   }
 ]

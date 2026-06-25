@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Inventario APSORAD</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </head>
@@ -23,23 +24,25 @@
 
     <script>
         $(document).ready(function() {
-            $('#miInventario').DataTable({
-                "ajax": { 
-                    "url": "inventario.json", 
-                    "dataSrc": "" 
-                },
-                "columns": [
-                    { 
-                        "data": "IDENTIFICACION",
-                        "render": function(data, type, row) {
-                            return '<a href="equipo.html?id=' + encodeURIComponent(data) + '">' + data + '</a>';
-                        }
-                    },
-                    { "data": "EQUIPO" },
-                    { "data": "MARCA" },
-                    { "data": "MODELO" },
-                    { "data": "ASIGNADO" }
-                ]
+            const csvUrl = 'TU_URL_CSV_AQUI'; // PEGA AQUÍ TU ENLACE PUBLICADO
+
+            Papa.parse(csvUrl, {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    $('#miInventario').DataTable({
+                        data: results.data,
+                        columns: [
+                            { data: "IDENTIFICACION", render: function(data) {
+                                return '<a href="equipo.html?id=' + encodeURIComponent(data) + '">' + data + '</a>';
+                            }},
+                            { data: "EQUIPO" },
+                            { data: "MARCA" },
+                            { data: "MODELO" },
+                            { data: "ASIGNADO" }
+                        ]
+                    });
+                }
             });
         });
     </script>

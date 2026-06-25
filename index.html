@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>Inventario APSORAD</title>
 </head>
 <body>
-    <h2>Inventario</h2>
-    <div id="resultado">Cargando datos...</div>
+    <h1>Inventario APSORAD</h1>
+    <div id="debug">Cargando...</div>
 
     <script>
+        // Intentamos cargar el JSON directamente
         fetch('inventario.json')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('resultado').innerHTML = JSON.stringify(data, null, 2);
+            .then(response => {
+                if (!response.ok) throw new Error("No se pudo cargar el archivo");
+                return response.json();
             })
-            .catch(error => {
-                document.getElementById('resultado').innerHTML = "Error al leer el JSON: " + error;
-                console.log(error);
+            .then(data => {
+                document.getElementById('debug').innerHTML = "JSON cargado correctamente: " + JSON.stringify(data);
+            })
+            .catch(err => {
+                document.getElementById('debug').innerHTML = "ERROR: " + err.message;
             });
     </script>
 </body>

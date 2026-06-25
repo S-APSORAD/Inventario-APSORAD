@@ -2,7 +2,7 @@
     $(document).ready(function() {
         $('#miInventario').DataTable({
             "ajax": {
-                "url": "inventario.csv",
+                "url": "inventario.json",
                 "dataType": "text",
                 "dataSrc": function(data) {
                     var lines = data.split('\n');

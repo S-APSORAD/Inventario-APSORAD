@@ -8,8 +8,7 @@
     "ACTIVO": "Activo",
     "ASIGNADO": "Hospital de Curicó",
     "HISTORIAL": [
-      { "fecha": "2025-01-09", "accion": "Instalación inicial del equipo." },
-      { "fecha": "2026-06-25", "accion": "Revisión preventiva de hardware." }
+      { "fecha": "2025-01-09", "accion": "Instalación inicial" }
     ]
   },
   {
@@ -17,23 +16,11 @@
     "EQUIPO": "Servidor Rackeable",
     "MARCA": "Dell",
     "MODELO": "PowerEdge R350",
-    "SN": "DELL-R350-001",
+    "SN": "N/A",
     "ACTIVO": "Activo",
     "ASIGNADO": "Hospital de Quillota",
     "HISTORIAL": [
-      { "fecha": "2026-03-22", "accion": "Instalación del PACS DALCA." }
-    ]
-  },
-  {
-    "ID": "APSO-003",
-    "EQUIPO": "PC Dell",
-    "MARCA": "Dell",
-    "MODELO": "OptiPlex T160",
-    "SN": "DELL-T160-099",
-    "ACTIVO": "Activo",
-    "ASIGNADO": "HOSPITAL ERNESTO TORRES GALDAMES",
-    "HISTORIAL": [
-      { "fecha": "2026-01-15", "accion": "Entrega y configuración inicial." }
+      { "fecha": "2026-03-22", "accion": "Instalación PACS" }
     ]
   }
 ]

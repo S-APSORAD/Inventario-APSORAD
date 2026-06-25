@@ -22,12 +22,11 @@
 </div>
 
 <script>
-    // Obtener ID de la URL
     const params = new URLSearchParams(window.location.search);
     const idBuscado = params.get('id');
-    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pubhtml'; // PEGA AQUÍ TU ENLACE DE GOOGLE SHEETS
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pubhtml'; 
 
-    // Función para convertir saltos de línea en <br>
+    // Función para convertir saltos de línea (\n) en etiquetas <br>
     const formatearTexto = (texto) => {
         return texto ? texto.replace(/\n/g, '<br>') : 'N/A';
     };
@@ -36,7 +35,10 @@
         download: true,
         header: true,
         complete: function(results) {
-            const equipo = results.data.find(e => e.IDENTIFICACION === idBuscado);
+            // Se usa trim() para evitar problemas con espacios accidentales
+            const equipo = results.data.find(e => 
+                e.IDENTIFICACION && e.IDENTIFICACION.trim() === idBuscado.trim()
+            );
             
             if (equipo) {
                 document.getElementById('detalle').innerHTML = `
@@ -45,14 +47,14 @@
                     <div class="data-item"><span class="label">Marca:</span> ${equipo.MARCA}</div>
                     <div class="data-item"><span class="label">Modelo:</span> ${equipo.MODELO}</div>
                     <div class="data-item"><span class="label">Asignado a:</span> ${equipo.ASIGNADO}</div>
-                    <div class="data-item"><span class="label">Historial de Eventos:</span> ${formatearTexto(equipo["HISTORIAL DE EVENTOS"])}</div>
-                    <div class="data-item"><span class="label">Características:</span> ${formatearTexto(equipo.CARACTERISTICAS || equipo.CARACTERÍSTICAS)}</div>
-                    <div class="data-item"><span class="label">Monitores:</span> ${formatearTexto(equipo.MONITORES)}</div>
+                    <div class="data-item"><span class="label">Historial de Eventos:</span><br>${formatearTexto(equipo["HISTORIAL DE EVENTOS"])}</div>
+                    <div class="data-item"><span class="label">Características:</span><br>${formatearTexto(equipo.CARACTERISTICAS || equipo.CARACTERÍSTICAS)}</div>
+                    <div class="data-item"><span class="label">Monitores:</span><br>${formatearTexto(equipo.MONITORES)}</div>
                     <div class="data-item"><span class="label">Teclado y Mouse:</span> ${equipo["TECLADO Y MOUSE"]}</div>
                     <a href="index.html" class="volver">← Volver al Inventario</a>
                 `;
             } else {
-                document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>No se encontró el equipo.</p><a href='index.html' class='volver'>Volver</a>";
+                document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>No se encontró el equipo con ID: " + idBuscado + "</p><a href='index.html' class='volver'>Volver</a>";
             }
         }
     });

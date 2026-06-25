@@ -2,22 +2,24 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Ficha Técnica de Equipo</title>
+    <title>Ficha Técnica - APSORAD</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #eef2f3; padding: 20px; }
-        .card { background: white; max-width: 600px; margin: auto; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-        .data-box { background: #f8f9fa; padding: 10px; border-radius: 6px; border-left: 4px solid #3498db; }
-        .label { font-size: 0.8em; color: #7f8c8d; text-transform: uppercase; }
-        .value { font-weight: bold; color: #34495e; }
-        .historial { margin-top: 30px; border-top: 1px solid #ddd; padding-top: 15px; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #eef2f3; padding: 20px; color: #333; }
+        .card { background: white; max-width: 700px; margin: auto; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; margin-top: 0; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
+        .data-box { background: #f8f9fa; padding: 12px; border-radius: 6px; border-left: 4px solid #3498db; }
+        .label { font-size: 0.75em; color: #7f8c8d; text-transform: uppercase; letter-spacing: 1px; }
+        .value { font-weight: bold; color: #2c3e50; font-size: 1.1em; }
+        .historial-list { list-style: none; padding: 0; }
+        .historial-item { background: #fdfdfd; border: 1px solid #eee; padding: 10px; margin-bottom: 8px; border-radius: 5px; border-left: 4px solid #27ae60; }
+        .btn-volver { display: inline-block; margin-top: 20px; color: #3498db; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="card" id="detalle">
-    <p>Cargando ficha técnica...</p>
+    <p>Cargando información del equipo...</p>
 </div>
 
 <script>
@@ -29,6 +31,10 @@
         .then(data => {
             const e = data.find(item => item.ID === idBuscado);
             if (e) {
+                const historialHTML = e.HISTORIAL.map(item => 
+                    `<li class="historial-item"><b>${item.fecha}:</b> ${item.accion}</li>`
+                ).join('');
+
                 document.getElementById('detalle').innerHTML = `
                     <h1>${e.EQUIPO}</h1>
                     <div class="info-grid">
@@ -36,14 +42,12 @@
                         <div class="data-box"><div class="label">Estado</div><div class="value">${e.ACTIVO}</div></div>
                         <div class="data-box"><div class="label">Marca</div><div class="value">${e.MARCA}</div></div>
                         <div class="data-box"><div class="label">Modelo</div><div class="value">${e.MODELO}</div></div>
+                        <div class="data-box"><div class="label">S/N</div><div class="value">${e.SN}</div></div>
+                        <div class="data-box"><div class="label">Ubicación</div><div class="value">${e.ASIGNADO}</div></div>
                     </div>
-                    <p><div class="label">Asignado a:</div><div class="value">${e.ASIGNADO}</div></p>
-                    <div class="historial">
-                        <h3>Historial y Notas</h3>
-                        <p>${e.OBSERVACIONES}</p>
-                    </div>
-                    <br>
-                    <a href="index.html">← Volver al Inventario</a>
+                    <h3>Historial de Mantenimiento</h3>
+                    <ul class="historial-list">${historialHTML}</ul>
+                    <a href="index.html" class="btn-volver">← Volver al Inventario</a>
                 `;
             } else {
                 document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>Equipo no encontrado.</p><a href='index.html'>Volver</a>";

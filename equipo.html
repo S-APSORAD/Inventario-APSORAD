@@ -6,6 +6,7 @@
 </head>
 <body>
     <div id="detalle">Cargando...</div>
+
     <script>
         const params = new URLSearchParams(window.location.search);
         const idBuscado = params.get('id');
@@ -13,18 +14,24 @@
         fetch('inventario.json')
             .then(res => res.json())
             .then(data => {
-                // Buscamos específicamente por la propiedad IDENTIFICACIÓN
-                const equipo = data.find(e => e.IDENTIFICACIÓN === idBuscado);
+                const equipo = data.find(e => e.IDENTIFICACION === idBuscado);
                 
                 if (equipo) {
                     document.getElementById('detalle').innerHTML = `
                         <h1>${equipo.EQUIPO}</h1>
-                        <p><b>ID:</b> ${equipo.IDENTIFICACIÓN}</p>
+                        <p><b>ID:</b> ${equipo.IDENTIFICACION}</p>
                         <p><b>Estado:</b> ${equipo.ACTIVO}</p>
+                        <p><b>Ubicación:</b> ${equipo.ASIGNADO}</p>
+                        <p><b>Observaciones:</b> ${equipo.OBSERVACIONES}</p>
                         <a href="index.html">Volver</a>
                     `;
                 } else {
-                    document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>No se encontró el equipo: " + idBuscado + "</p><a href='index.html'>Volver</a>";
+                    document.getElementById('detalle').innerHTML = `
+                        <h1>Error</h1>
+                        <p>No se encontró el equipo con ID: <b>${idBuscado}</b></p>
+                        <p>Asegúrate de que el JSON tenga la clave "IDENTIFICACION".</p>
+                        <a href="index.html">Volver al Inventario</a>
+                    `;
                 }
             });
     </script>

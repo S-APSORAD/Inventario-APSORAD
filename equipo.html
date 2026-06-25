@@ -1,9 +1,27 @@
-} else {
-                // Esto nos dirá exactamente qué ID buscó y qué falló
-                document.getElementById('detalle').innerHTML = `
-                    <h1>Error de Búsqueda</h1>
-                    <p>No encontré el ID: <b>${idBuscado}</b></p>
-                    <p>IDs disponibles en el JSON: ${data.map(i => i.ID).join(', ')}</p>
-                    <a href="index.html">Volver</a>
-                `;
-            }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha Técnica</title>
+</head>
+<body>
+    <div id="detalle">Cargando...</div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const idUrl = params.get('id'); // El ID que viene del link
+
+        fetch('inventario.json')
+            .then(res => res.json())
+            .then(data => {
+                // Buscamos ignorando espacios extra
+                const equipo = data.find(e => e.ID.trim() === idUrl.trim());
+                
+                if (equipo) {
+                    document.getElementById('detalle').innerHTML = `<h1>${equipo.EQUIPO}</h1><p>ID: ${equipo.ID}</p>`;
+                } else {
+                    document.getElementById('detalle').innerHTML = `<h1>Error</h1><p>No encontré el ID: "${idUrl}". Verifica que coincida con el JSON.</p><a href="index.html">Volver</a>`;
+                }
+            });
+    </script>
+</body>
+</html>

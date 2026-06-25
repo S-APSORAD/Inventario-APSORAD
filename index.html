@@ -4,42 +4,41 @@
     <meta charset="UTF-8">
     <title>Inventario APSORAD</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-    <style>
-        body { font-family: sans-serif; padding: 20px; background: #f4f7f6; }
-        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    </style>
 </head>
 <body>
-<div class="container">
     <h2>Inventario de Equipos</h2>
-    <table id="miInventario" class="display">
+    <table id="miInventario" class="display" style="width:100%">
         <thead>
-            <tr><th>ID</th><th>Equipo</th><th>Marca</th><th>Modelo</th><th>Asignado</th></tr>
+            <tr>
+                <th>ID</th>
+                <th>Equipo</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Asignado</th>
+            </tr>
         </thead>
     </table>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('#miInventario').DataTable({
-        "ajax": { "url": "inventario.json", "dataSrc": "" },
-        "language": { "url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json" },
-        "columns": [
-            { 
-                "data": "IDENTIFICACIÓN",
-                "render": function(data, type, row) {
-                    return '<a href="equipo.html?id=' + encodeURIComponent(data) + '"><b>' + data + '</b></a>';
-                }
-            },
-            { "data": "EQUIPO" },
-            { "data": "MARCA" },
-            { "data": "MODELO" },
-            { "data": "ASIGNADO" }
-        ]
-    });
-});
-</script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#miInventario').DataTable({
+                "ajax": { "url": "inventario.json", "dataSrc": "" },
+                "columns": [
+                    { 
+                        "data": "IDENTIFICACIÓN",
+                        "render": function(data, type, row) {
+                            return '<a href="equipo.html?id=' + encodeURIComponent(data) + '">' + data + '</a>';
+                        }
+                    },
+                    { "data": "EQUIPO" },
+                    { "data": "MARCA" },
+                    { "data": "MODELO" },
+                    { "data": "ASIGNADO" }
+                ]
+            });
+        });
+    </script>
 </body>
 </html>

@@ -14,7 +14,7 @@
         fetch('inventario.json')
             .then(res => res.json())
             .then(data => {
-                const equipo = data.find(e => e.IDENTIFICACION === idBuscado);
+                const equipo = data.find(e => e.IDENTIFICACION == idBuscado);
                 
                 if (equipo) {
                     document.getElementById('detalle').innerHTML = `
@@ -26,12 +26,7 @@
                         <a href="index.html">Volver</a>
                     `;
                 } else {
-                    document.getElementById('detalle').innerHTML = `
-                        <h1>Error</h1>
-                        <p>No se encontró el equipo con ID: <b>${idBuscado}</b></p>
-                        <p>Asegúrate de que el JSON tenga la clave "IDENTIFICACION".</p>
-                        <a href="index.html">Volver al Inventario</a>
-                    `;
+                    document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>No se encontró el equipo: " + idBuscado + "</p><a href='index.html'>Volver</a>";
                 }
             });
     </script>

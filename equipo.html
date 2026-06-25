@@ -5,22 +5,38 @@
     <title>Ficha Técnica</title>
 </head>
 <body>
-    <div id="detalle">Cargando...</div>
+    <div id="detalle">Buscando equipo...</div>
+
     <script>
-        const params = new URLSearchParams(window.location.search);
-        const idUrl = params.get('id'); // El ID que viene del link
+        const urlParams = new URLSearchParams(window.location.search);
+        const idBuscado = urlParams.get('id');
 
         fetch('inventario.json')
             .then(res => res.json())
             .then(data => {
-                // Buscamos ignorando espacios extra
-                const equipo = data.find(e => e.ID.trim() === idUrl.trim());
+                console.log("ID buscado:", idBuscado);
+                console.log("Datos cargados:", data);
+                
+                // Buscamos coincidencia exacta
+                const equipo = data.find(e => e.ID === idBuscado);
                 
                 if (equipo) {
-                    document.getElementById('detalle').innerHTML = `<h1>${equipo.EQUIPO}</h1><p>ID: ${equipo.ID}</p>`;
+                    document.getElementById('detalle').innerHTML = `
+                        <h1>${equipo.EQUIPO}</h1>
+                        <p><b>ID:</b> ${equipo.ID}</p>
+                        <p><b>Estado:</b> ${equipo.ACTIVO}</p>
+                        <a href="index.html">Volver</a>
+                    `;
                 } else {
-                    document.getElementById('detalle').innerHTML = `<h1>Error</h1><p>No encontré el ID: "${idUrl}". Verifica que coincida con el JSON.</p><a href="index.html">Volver</a>`;
+                    document.getElementById('detalle').innerHTML = `
+                        <h1>Error</h1>
+                        <p>No se encontró el equipo con ID: <b>${idBuscado}</b></p>
+                        <a href="index.html">Volver al Inventario</a>
+                    `;
                 }
+            })
+            .catch(err => {
+                document.getElementById('detalle').innerHTML = "Error al cargar el JSON.";
             });
     </script>
 </body>

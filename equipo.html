@@ -2,42 +2,50 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Ficha Técnica</title>
+    <title>Ficha Técnica - APSORAD</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #eef2f3; padding: 20px; color: #333; }
+        .card { background: white; max-width: 700px; margin: auto; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
+        .data-box { background: #f8f9fa; padding: 12px; border-radius: 6px; border-left: 4px solid #3498db; }
+        .label { font-size: 0.75em; color: #7f8c8d; text-transform: uppercase; }
+        .value { font-weight: bold; color: #2c3e50; font-size: 1.1em; }
+    </style>
 </head>
 <body>
-    <div id="detalle">Buscando equipo...</div>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const idBuscado = urlParams.get('id');
+<div class="card" id="detalle">
+    <p>Cargando información del equipo...</p>
+</div>
 
-        fetch('inventario.json')
-            .then(res => res.json())
-            .then(data => {
-                console.log("ID buscado:", idBuscado);
-                console.log("Datos cargados:", data);
-                
-                // Buscamos coincidencia exacta
-                const equipo = data.find(e => e.ID === idBuscado);
-                
-                if (equipo) {
-                    document.getElementById('detalle').innerHTML = `
-                        <h1>${equipo.EQUIPO}</h1>
-                        <p><b>ID:</b> ${equipo.ID}</p>
-                        <p><b>Estado:</b> ${equipo.ACTIVO}</p>
-                        <a href="index.html">Volver</a>
-                    `;
-                } else {
-                    document.getElementById('detalle').innerHTML = `
-                        <h1>Error</h1>
-                        <p>No se encontró el equipo con ID: <b>${idBuscado}</b></p>
-                        <a href="index.html">Volver al Inventario</a>
-                    `;
-                }
-            })
-            .catch(err => {
-                document.getElementById('detalle').innerHTML = "Error al cargar el JSON.";
-            });
-    </script>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const idBuscado = params.get('id');
+
+    fetch('inventario.json')
+        .then(res => res.json())
+        .then(data => {
+            // Buscamos usando el nombre exacto de tu columna: IDENTIFICACIÓN
+            const e = data.find(item => item.IDENTIFICACIÓN === idBuscado);
+            
+            if (e) {
+                document.getElementById('detalle').innerHTML = `
+                    <h1>${e.EQUIPO}</h1>
+                    <div class="info-grid">
+                        <div class="data-box"><div class="label">ID</div><div class="value">${e.IDENTIFICACIÓN}</div></div>
+                        <div class="data-box"><div class="label">Estado</div><div class="value">${e.ACTIVO}</div></div>
+                        <div class="data-box"><div class="label">Marca</div><div class="value">${e.MARCA}</div></div>
+                        <div class="data-box"><div class="label">Modelo</div><div class="value">${e.MODELO}</div></div>
+                    </div>
+                    <p><div class="label">Asignado a:</div><div class="value">${e.ASIGNADO}</div></p>
+                    <p><div class="label">Observaciones:</div><div class="value">${e.OBSERVACIONES}</div></p>
+                    <a href="index.html">← Volver al Inventario</a>
+                `;
+            } else {
+                document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>No se encontró el equipo: " + idBuscado + "</p><a href='index.html'>Volver</a>";
+            }
+        });
+</script>
 </body>
 </html>

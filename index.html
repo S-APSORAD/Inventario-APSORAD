@@ -1,21 +1,23 @@
-<script>
-    $(document).ready(function() {
-        $('#miInventario').DataTable({
-            "ajax": { "url": "inventario.json", "dataSrc": "" },
-            "columns": [
-                { 
-                    "data": "EQUIPO",
-                    "render": function(data, type, row) {
-                        // Enlace dinámico que usaremos para tus QRs
-                        return '<a href="equipo.html?id=' + row.ID + '">' + data + '</a>';
-                    }
-                },
-                { "data": "ID" },
-                { "data": "MARCA" },
-                { "data": "ASIGNADO" },
-                { "data": "ACTIVO" }
-            ],
-            "language": { "url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json" }
-        });
-    });
-</script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Inventario APSORAD</title>
+</head>
+<body>
+    <h2>Inventario</h2>
+    <div id="resultado">Cargando datos...</div>
+
+    <script>
+        fetch('inventario.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('resultado').innerHTML = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                document.getElementById('resultado').innerHTML = "Error al leer el JSON: " + error;
+                console.log(error);
+            });
+    </script>
+</body>
+</html>

@@ -2,41 +2,57 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Ficha Técnica</title>
+    <title>Ficha Técnica - APSORAD</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <style>
         body { font-family: sans-serif; padding: 20px; background: #f4f7f6; }
-        .container { background: white; max-width: 600px; margin: auto; padding: 20px; border-radius: 10px; }
-        .logo { display: block; margin: 0 auto 20px; width: 150px; }
+        .container { background: white; max-width: 700px; margin: auto; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .logo { display: block; margin: 0 auto 20px; width: 180px; }
+        h1 { color: #2c3e50; text-align: center; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .data-item { margin-bottom: 15px; line-height: 1.6; }
+        .label { font-weight: bold; color: #34495e; display: block; margin-bottom: 5px; }
+        .volver { display: inline-block; margin-top: 20px; color: #3498db; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
+
 <div class="container">
     <img src="logo1.jpg" alt="Logo APSORAD" class="logo">
     <div id="detalle">Cargando información...</div>
 </div>
+
 <script>
+    // Obtener ID de la URL
     const params = new URLSearchParams(window.location.search);
     const idBuscado = params.get('id');
-    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pub?output=csv'; // PEGA AQUÍ LA MISMA URL
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pubhtml'; // PEGA AQUÍ TU ENLACE DE GOOGLE SHEETS
+
+    // Función para convertir saltos de línea en <br>
+    const formatearTexto = (texto) => {
+        return texto ? texto.replace(/\n/g, '<br>') : 'N/A';
+    };
 
     Papa.parse(csvUrl, {
         download: true,
         header: true,
         complete: function(results) {
             const equipo = results.data.find(e => e.IDENTIFICACION === idBuscado);
+            
             if (equipo) {
                 document.getElementById('detalle').innerHTML = `
                     <h1>${equipo.EQUIPO}</h1>
-                    <p><b>ID:</b> ${equipo.IDENTIFICACION}</p>
-                    <p><b>Marca:</b> ${equipo.MARCA}</p>
-                    <p><b>Asignado:</b> ${equipo.ASIGNADO}</p>
-                    <p><b>Monitores:</b> ${equipo.MONITORES}</p>
-                    <p><b>Teclado y Mouse:</b> ${equipo["TECLADO Y MOUSE"]}</p>
-                    <a href="index.html">← Volver</a>
+                    <div class="data-item"><span class="label">ID:</span> ${equipo.IDENTIFICACION}</div>
+                    <div class="data-item"><span class="label">Marca:</span> ${equipo.MARCA}</div>
+                    <div class="data-item"><span class="label">Modelo:</span> ${equipo.MODELO}</div>
+                    <div class="data-item"><span class="label">Asignado a:</span> ${equipo.ASIGNADO}</div>
+                    <div class="data-item"><span class="label">Historial de Eventos:</span> ${formatearTexto(equipo["HISTORIAL DE EVENTOS"])}</div>
+                    <div class="data-item"><span class="label">Características:</span> ${formatearTexto(equipo.CARACTERISTICAS || equipo.CARACTERÍSTICAS)}</div>
+                    <div class="data-item"><span class="label">Monitores:</span> ${formatearTexto(equipo.MONITORES)}</div>
+                    <div class="data-item"><span class="label">Teclado y Mouse:</span> ${equipo["TECLADO Y MOUSE"]}</div>
+                    <a href="index.html" class="volver">← Volver al Inventario</a>
                 `;
             } else {
-                document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>Equipo no encontrado.</p><a href='index.html'>Volver</a>";
+                document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>No se encontró el equipo.</p><a href='index.html' class='volver'>Volver</a>";
             }
         }
     });

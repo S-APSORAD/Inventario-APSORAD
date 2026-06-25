@@ -7,8 +7,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .logo { display: block; margin: 0 auto 20px; width: 200px; }
+    </style>
 </head>
 <body>
+    <img src="logo1.jpg" alt="Logo APSORAD" class="logo">
     <h2>Inventario de Equipos</h2>
     <table id="miInventario" class="display" style="width:100%">
         <thead>
@@ -21,10 +26,10 @@
             </tr>
         </thead>
     </table>
-
     <script>
         $(document).ready(function() {
-            const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pub?output=csv'; 
+            // PEGA AQUÍ TU URL DE GOOGLE SHEETS PUBLICADA
+            const csvUrl = 'TU_URL_CSV_AQUI'; 
 
             Papa.parse(csvUrl, {
                 download: true,

@@ -3,35 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Ficha Técnica</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 </head>
 <body>
-    <div id="detalle">Cargando información...</div>
+    <div id="detalle">Cargando...</div>
 
     <script>
         const params = new URLSearchParams(window.location.search);
         const idBuscado = params.get('id');
+        const csvUrl = 'TU_URL_CSV_AQUI'; // PEGA AQUÍ TU ENLACE PUBLICADO
 
-        fetch('inventario.json')
-            .then(res => res.json())
-            .then(data => {
-                const equipo = data.find(e => e.IDENTIFICACION == idBuscado);
+        Papa.parse(csvUrl, {
+            download: true,
+            header: true,
+            complete: function(results) {
+                const equipo = results.data.find(e => e.IDENTIFICACION === idBuscado);
                 
                 if (equipo) {
                     document.getElementById('detalle').innerHTML = `
-                        <h1>Equipo: ${equipo.EQUIPO}</h1>
+                        <h1>${equipo.EQUIPO}</h1>
                         <p><b>ID:</b> ${equipo.IDENTIFICACION}</p>
-                        <p><b>Estado:</b> ${equipo.ACTIVO}</p>
+                        <p><b>Marca/Modelo:</b> ${equipo.MARCA} / ${equipo.MODELO}</p>
                         <p><b>Ubicación:</b> ${equipo.ASIGNADO}</p>
-                        <p><b>Observaciones:</b> ${equipo.OBSERVACIONES}</p>
-                        <a href="index.html">← Volver al Inventario</a>
+                        <p><b>Monitores:</b> ${equipo.MONITORES}</p>
+                        <p><b>Teclado y Mouse:</b> ${equipo["TECLADO Y MOUSE"]}</p>
+                        <a href="index.html">← Volver</a>
                     `;
                 } else {
-                    document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>No se encontró el equipo: " + idBuscado + "</p><a href='index.html'>Volver</a>";
+                    document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>No se encontró el equipo: " + idBuscado + "</p>";
                 }
-            })
-            .catch(err => {
-                document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>No se pudo cargar el archivo inventario.json</p>";
-            });
+            }
+        });
     </script>
 </body>
 </html>

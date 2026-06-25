@@ -2,46 +2,38 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Ficha Técnica - APSORAD</title>
+    <title>Ficha Técnica</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <style>
         body { font-family: sans-serif; padding: 20px; background: #f4f7f6; }
-        .container { background: white; max-width: 600px; margin: auto; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .logo { display: block; margin: 0 auto 20px; width: 200px; }
-        h1 { color: #2c3e50; text-align: center; }
-        .data-item { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .volver { display: inline-block; margin-top: 20px; color: #3498db; text-decoration: none; }
+        .container { background: white; max-width: 600px; margin: auto; padding: 20px; border-radius: 10px; }
+        .logo { display: block; margin: 0 auto 20px; width: 150px; }
     </style>
 </head>
 <body>
-
 <div class="container">
     <img src="logo1.jpg" alt="Logo APSORAD" class="logo">
-    <div id="detalle">Cargando información del equipo...</div>
+    <div id="detalle">Cargando información...</div>
 </div>
-
 <script>
-    // Obtener ID de la URL
     const params = new URLSearchParams(window.location.search);
     const idBuscado = params.get('id');
-    const csvUrl = 'TU_URL_CSV_AQUI'; // <--- PEGA AQUÍ TU ENLACE DE GOOGLE SHEETS
+    const csvUrl = 'TU_URL_CSV_AQUI'; // PEGA AQUÍ LA MISMA URL
 
     Papa.parse(csvUrl, {
         download: true,
         header: true,
         complete: function(results) {
             const equipo = results.data.find(e => e.IDENTIFICACION === idBuscado);
-            
             if (equipo) {
                 document.getElementById('detalle').innerHTML = `
                     <h1>${equipo.EQUIPO}</h1>
-                    <div class="data-item"><b>ID:</b> ${equipo.IDENTIFICACION}</div>
-                    <div class="data-item"><b>Marca:</b> ${equipo.MARCA}</div>
-                    <div class="data-item"><b>Modelo:</b> ${equipo.MODELO}</div>
-                    <div class="data-item"><b>Asignado a:</b> ${equipo.ASIGNADO}</div>
-                    <div class="data-item"><b>Monitores:</b> ${equipo.MONITORES}</div>
-                    <div class="data-item"><b>Teclado y Mouse:</b> ${equipo["TECLADO Y MOUSE"]}</div>
-                    <a href="index.html" class="volver">← Volver al Inventario</a>
+                    <p><b>ID:</b> ${equipo.IDENTIFICACION}</p>
+                    <p><b>Marca:</b> ${equipo.MARCA}</p>
+                    <p><b>Asignado:</b> ${equipo.ASIGNADO}</p>
+                    <p><b>Monitores:</b> ${equipo.MONITORES}</p>
+                    <p><b>Teclado y Mouse:</b> ${equipo["TECLADO Y MOUSE"]}</p>
+                    <a href="index.html">← Volver</a>
                 `;
             } else {
                 document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>Equipo no encontrado.</p><a href='index.html'>Volver</a>";

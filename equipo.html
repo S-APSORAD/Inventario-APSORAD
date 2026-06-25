@@ -6,12 +6,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 </head>
 <body>
-    <div id="detalle">Cargando...</div>
+    <div id="detalle">Cargando datos...</div>
 
     <script>
         const params = new URLSearchParams(window.location.search);
         const idBuscado = params.get('id');
-        const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pub?output=csv'; // PEGA AQUÍ TU ENLACE PUBLICADO
+        const csvUrl = 'TU_URL_CSV_AQUI'; // PEGA AQUÍ TU MISMO ENLACE
 
         Papa.parse(csvUrl, {
             download: true,
@@ -23,14 +23,15 @@
                     document.getElementById('detalle').innerHTML = `
                         <h1>${equipo.EQUIPO}</h1>
                         <p><b>ID:</b> ${equipo.IDENTIFICACION}</p>
-                        <p><b>Marca/Modelo:</b> ${equipo.MARCA} / ${equipo.MODELO}</p>
-                        <p><b>Ubicación:</b> ${equipo.ASIGNADO}</p>
+                        <p><b>Marca:</b> ${equipo.MARCA}</p>
+                        <p><b>Modelo:</b> ${equipo.MODELO}</p>
+                        <p><b>Asignado a:</b> ${equipo.ASIGNADO}</p>
                         <p><b>Monitores:</b> ${equipo.MONITORES}</p>
                         <p><b>Teclado y Mouse:</b> ${equipo["TECLADO Y MOUSE"]}</p>
-                        <a href="index.html">← Volver</a>
+                        <a href="index.html">Volver al Inventario</a>
                     `;
                 } else {
-                    document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>No se encontró el equipo: " + idBuscado + "</p>";
+                    document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>No se encontró el equipo: " + idBuscado + "</p><a href='index.html'>Volver</a>";
                 }
             }
         });

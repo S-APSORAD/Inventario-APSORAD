@@ -1,47 +1,20 @@
 [
   {
+    "ID": "APSO-001",
     "EQUIPO": "MacBook Pro",
     "MARCA": "Mac",
     "MODELO": "MacBook Pro 2012",
-    "SN": "C1MQH8KCDTY3",
     "ACTIVO": "Activo",
     "ASIGNADO": "Hospital de Curicó",
     "OBSERVACIONES": "Se instala el equipo el dia 9 de Enero de 2025."
   },
   {
+    "ID": "APSO-002",
     "EQUIPO": "Servidor Rackeable",
     "MARCA": "Dell",
     "MODELO": "Dell R350 Xeon",
-    "SN": "N/A",
     "ACTIVO": "Activo",
     "ASIGNADO": "Hospital de Quillota",
     "OBSERVACIONES": "22 de marzo se instaló el PACS DALCA."
-  },
-  {
-    "EQUIPO": "PC Dell",
-    "MARCA": "Dell",
-    "MODELO": "Dell T160",
-    "SN": "N/A",
-    "ACTIVO": "Activo",
-    "ASIGNADO": "HOSPITAL ERNESTO TORRES GALDAMES",
-    "OBSERVACIONES": "Equipo operativo."
-  },
-  {
-    "EQUIPO": "Nuc Mini",
-    "MARCA": "Nuc",
-    "MODELO": "N/A",
-    "SN": "N/A",
-    "ACTIVO": "Activo",
-    "ASIGNADO": "HOSPITAL REGIONAL DE TALCA",
-    "OBSERVACIONES": "Se instala Nuc Mini en sala de servidores el 24 de mayo de 2024."
-  },
-  {
-    "EQUIPO": "Servidor Rackeable",
-    "MARCA": "Dell",
-    "MODELO": "PowerEdge R250",
-    "SN": "N/A",
-    "ACTIVO": "Activo",
-    "ASIGNADO": "HOSPITAL CLAUDIO VICUÑA",
-    "OBSERVACIONES": "Se instala servidor el dia 19 de enero de 2026."
   }
 ]

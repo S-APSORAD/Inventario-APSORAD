@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+</head>
+<body>
+    <h2>Mi Inventario de Rally</h2>
+    <table id="miInventario" class="display">
+        <thead>
+            <tr><th>Producto</th><th>Cantidad</th><th>Estado</th></tr>
+        </thead>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Aquí debes subir tu archivo CSV al repo y poner su nombre
+            $('#miInventario').DataTable({
+                ajax: { url: 'inventario.csv', dataSrc: '' }
+            });
+        });
+    </script>
+</body>
+</html>

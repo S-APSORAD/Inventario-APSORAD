@@ -1,64 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="utf-8">
-    <title>Bitácora de Servidores</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-    <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 30px; background-color: #f4f7f6; }
-        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        h2 { color: #2c3e50; margin-bottom: 25px; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        
-        /* Asegura que la tabla no se rompa */
-        table.dataTable { width: 100% !important; border-collapse: collapse !important; }
-        table.dataTable td { max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h2>Bitácora de Servidores y Equipos</h2>
-    <table id="miInventario" class="display">
-        <thead>
-            <tr>
-                <th>Equipo</th>
-                <th>Marca</th>
-                <th>Modelo</th>
-                <th>SN</th>
-                <th>Estado</th>
-                <th>Asignado A</th>
-                <th>Observaciones</th>
-            </tr>
-        </thead>
-    </table>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-
 <script>
     $(document).ready(function() {
         $('#miInventario').DataTable({
-            "ajax": {
-                "url": "inventario.json",
-                "dataSrc": ""
-            },
+            "ajax": { "url": "inventario.json", "dataSrc": "" },
             "columns": [
-                { "data": "EQUIPO" },
+                { 
+                    "data": "EQUIPO",
+                    "render": function(data, type, row) {
+                        // Enlace dinámico que usaremos para tus QRs
+                        return '<a href="equipo.html?id=' + row.ID + '">' + data + '</a>';
+                    }
+                },
+                { "data": "ID" },
                 { "data": "MARCA" },
-                { "data": "MODELO" },
-                { "data": "SN" },
-                { "data": "ACTIVO" },
                 { "data": "ASIGNADO" },
-                { "data": "OBSERVACIONES" }
+                { "data": "ACTIVO" }
             ],
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
-            },
-            "pageLength": 10
+            "language": { "url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json" }
         });
     });
 </script>
-
-</body>
-</html>

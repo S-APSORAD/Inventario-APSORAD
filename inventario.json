@@ -4,17 +4,36 @@
     "EQUIPO": "MacBook Pro",
     "MARCA": "Mac",
     "MODELO": "MacBook Pro 2012",
+    "SN": "C1MQH8KCDTY3",
     "ACTIVO": "Activo",
     "ASIGNADO": "Hospital de Curicó",
-    "OBSERVACIONES": "Se instala el equipo el dia 9 de Enero de 2025."
+    "HISTORIAL": [
+      { "fecha": "2025-01-09", "accion": "Instalación inicial del equipo." },
+      { "fecha": "2026-06-25", "accion": "Revisión preventiva de hardware." }
+    ]
   },
   {
     "ID": "APSO-002",
     "EQUIPO": "Servidor Rackeable",
     "MARCA": "Dell",
-    "MODELO": "Dell R350 Xeon",
+    "MODELO": "PowerEdge R350",
+    "SN": "DELL-R350-001",
     "ACTIVO": "Activo",
     "ASIGNADO": "Hospital de Quillota",
-    "OBSERVACIONES": "22 de marzo se instaló el PACS DALCA."
+    "HISTORIAL": [
+      { "fecha": "2026-03-22", "accion": "Instalación del PACS DALCA." }
+    ]
+  },
+  {
+    "ID": "APSO-003",
+    "EQUIPO": "PC Dell",
+    "MARCA": "Dell",
+    "MODELO": "OptiPlex T160",
+    "SN": "DELL-T160-099",
+    "ACTIVO": "Activo",
+    "ASIGNADO": "HOSPITAL ERNESTO TORRES GALDAMES",
+    "HISTORIAL": [
+      { "fecha": "2026-01-15", "accion": "Entrega y configuración inicial." }
+    ]
   }
 ]

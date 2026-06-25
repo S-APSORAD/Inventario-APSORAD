@@ -1,0 +1,1280 @@
+[
+ {
+   "EQUIPO": "MacBook Pro,Mac,MacBook Pro 2012,C1MQH8KCDTY3,-,,Activo,Hospital de Curicó ,\"Sen instala el equipo el dia 9 de Enero de 2025 se deja operativo y se deja  Tarjeta de red TPLink AX88179A ",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "AET awcurico",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "IP 10.68.228.33",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "-- Puerto 4006",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "# NOMBRE?",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": ",Hospital de Curicó – 9 de Enero de 2025 se hace instalacion de equipo en centro medico y se retira Mac Mini el cual se deja en las dependencias de Apsorad \nServidor Rackeable,Dell,Dell R350 Xeon,N/A,-,2TB HARD DRIVE SATA ",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "6GBPS 7.2K 512N 3.5 R550/R250/R750/T550\",Activo,Hospital de Quillota,\" 22 de marzo se instaló el PACS DALCA dentro del Hospital y ",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "se probó el envío a través de la red MINSAL resultando exitoso el envío.\",22 de marzo se instaló el PACS DALCA dentro del HospitalLas mantenciones y adminmistracion estan a cargo de Dalca",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "PC, Dell , Dell T160,N/A,-,N/A,Activo,\"HOSPITAL ERNESTO",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": " TORRES GALDAMES\",,",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "Escritorio,Nuc,,,-,,Activo,\"HOSPITAL REGIONAL",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": " DE TALCA\",,Se instala Nuc Mini en la sala de servidores 1 el día viernes 24 de mayo de 2024",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "Rackeable, Dell ,PowerEdge R250,N/A,-,N/A,Activo,\"HOSPITAL ",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "CLAUDIO VICUÑA\",,Se instala servidor en hospital el dia 19 de enero de 2026",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "-",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": "Activo"
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "-",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": "Activo"
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "-",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": "Activo"
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": "Se hace mantencion de hardware y formateo el ____"
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "-",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": "Activo"
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": "Activo"
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": "Activo"
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": "Activo"
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": "Activo"
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": "Inactivo"
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "-",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": "Inactivo"
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": ""
+},
+ {
+   "EQUIPO": "",
+   "MARCA": "",
+   "MODELO": "",
+   "SN": {
+      "IMEI 1": {
+         "IMEI 2": ""
+      }
+   },
+   "Numero de Telefono": "",
+   "CARACTERISTICAS": "",
+   "ACTIVO": {
+      "INACTIVO": ""
+   },
+   "ASIGNADO A": "",
+   "OBSERVACIONES": "",
+   "HISTORIAL DE EVENTOS": "CFR-004  REV. 0"
+}
+]

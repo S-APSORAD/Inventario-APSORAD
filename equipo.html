@@ -2,31 +2,53 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Ficha de Equipo</title>
+    <title>Ficha Técnica de Equipo</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #eef2f3; padding: 20px; }
+        .card { background: white; max-width: 600px; margin: auto; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .data-box { background: #f8f9fa; padding: 10px; border-radius: 6px; border-left: 4px solid #3498db; }
+        .label { font-size: 0.8em; color: #7f8c8d; text-transform: uppercase; }
+        .value { font-weight: bold; color: #34495e; }
+        .historial { margin-top: 30px; border-top: 1px solid #ddd; padding-top: 15px; }
+    </style>
 </head>
 <body>
-    <div id="detalle">Cargando detalles del equipo...</div>
-    <a href="index.html">← Volver al Inventario</a>
 
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const idBuscado = params.get('id');
+<div class="card" id="detalle">
+    <p>Cargando ficha técnica...</p>
+</div>
 
-        fetch('inventario.json')
-            .then(res => res.json())
-            .then(data => {
-                const equipo = data.find(e => e.ID === idBuscado);
-                if (equipo) {
-                    document.getElementById('detalle').innerHTML = `
-                        <h1>Equipo: ${equipo.EQUIPO}</h1>
-                        <p><b>ID:</b> ${equipo.ID}</p>
-                        <p><b>Ubicación:</b> ${equipo.ASIGNADO}</p>
-                        <p><b>Observaciones:</b> ${equipo.OBSERVACIONES}</p>
-                    `;
-                } else {
-                    document.getElementById('detalle').innerHTML = "Equipo no encontrado.";
-                }
-            });
-    </script>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const idBuscado = params.get('id');
+
+    fetch('inventario.json')
+        .then(res => res.json())
+        .then(data => {
+            const e = data.find(item => item.ID === idBuscado);
+            if (e) {
+                document.getElementById('detalle').innerHTML = `
+                    <h1>${e.EQUIPO}</h1>
+                    <div class="info-grid">
+                        <div class="data-box"><div class="label">ID</div><div class="value">${e.ID}</div></div>
+                        <div class="data-box"><div class="label">Estado</div><div class="value">${e.ACTIVO}</div></div>
+                        <div class="data-box"><div class="label">Marca</div><div class="value">${e.MARCA}</div></div>
+                        <div class="data-box"><div class="label">Modelo</div><div class="value">${e.MODELO}</div></div>
+                    </div>
+                    <p><div class="label">Asignado a:</div><div class="value">${e.ASIGNADO}</div></p>
+                    <div class="historial">
+                        <h3>Historial y Notas</h3>
+                        <p>${e.OBSERVACIONES}</p>
+                    </div>
+                    <br>
+                    <a href="index.html">← Volver al Inventario</a>
+                `;
+            } else {
+                document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>Equipo no encontrado.</p><a href='index.html'>Volver</a>";
+            }
+        });
+</script>
 </body>
 </html>

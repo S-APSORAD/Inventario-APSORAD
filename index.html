@@ -2,36 +2,42 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Inventario</title>
+    <title>Bitácora de Equipos</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f7f6; }
+        h2 { color: #333; }
+        /* Esto evita que el texto largo rompa la tabla */
+        table.dataTable { width: 100% !important; border-collapse: collapse; }
+        td { word-wrap: break-word; max-width: 200px; vertical-align: top; }
+        .dataTables_wrapper { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    </style>
 </head>
 <body>
-    <h2>Bitácora de Equipos</h2>
-    <table id="miInventario" class="display" style="width:100%">
+    <h2>Bitácora de Servidores</h2>
+    <table id="miInventario" class="display">
         <thead>
             <tr>
-                <th>Equipo</th><th>Marca</th><th>Modelo</th><th>Estado</th><th>Asignado</th>
+                <th>Equipo</th><th>Marca</th><th>Modelo</th><th>Estado</th><th>Asignado</th><th>Obs</th>
             </tr>
         </thead>
     </table>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    
     <script>
         $(document).ready(function() {
             $('#miInventario').DataTable({
-                "ajax": {
-                    "url": "inventario.json",
-                    "dataSrc": ""
-                },
+                "ajax": { "url": "inventario.json", "dataSrc": "" },
                 "columns": [
                     { "data": "EQUIPO" },
                     { "data": "MARCA" },
                     { "data": "MODELO" },
                     { "data": "ACTIVO/INACTIVO" },
-                    { "data": "ASIGNADO A" }
-                ]
+                    { "data": "ASIGNADO A" },
+                    { "data": "OBSERVACIONES" }
+                ],
+                "language": { "url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json" }
             });
         });
     </script>

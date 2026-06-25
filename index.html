@@ -3,24 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Inventario APSORAD</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 </head>
 <body>
-    <h1>Inventario APSORAD</h1>
-    <div id="debug">Cargando...</div>
+
+    <h2>Inventario de Equipos</h2>
+    <table id="miInventario" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Equipo</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Asignado</th>
+            </tr>
+        </thead>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
     <script>
-        // Intentamos cargar el JSON directamente
-        fetch('inventario.json')
-            .then(response => {
-                if (!response.ok) throw new Error("No se pudo cargar el archivo");
-                return response.json();
-            })
-            .then(data => {
-                document.getElementById('debug').innerHTML = "JSON cargado correctamente: " + JSON.stringify(data);
-            })
-            .catch(err => {
-                document.getElementById('debug').innerHTML = "ERROR: " + err.message;
+        $(document).ready(function() {
+            $('#miInventario').DataTable({
+                "ajax": {
+                    "url": "inventario.json",
+                    "dataSrc": ""
+                },
+                "columns": [
+                    { "data": "ID" },
+                    { "data": "EQUIPO" },
+                    { "data": "MARCA" },
+                    { "data": "MODELO" },
+                    { "data": "ASIGNADO" }
+                ]
             });
+        });
     </script>
 </body>
 </html>

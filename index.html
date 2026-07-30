@@ -24,7 +24,7 @@
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
 
-    /* ENCABEZADO CON LOGO DESTACADO Y LIMPIO */
+    /* ENCABEZADO Y LOGO */
     .navbar-custom {
       background-color: var(--primary-color);
       box-shadow: 0 4px 15px rgba(0,0,0,0.15);
@@ -33,14 +33,14 @@
 
     .navbar-logo-box {
       background: #FFFFFF;
-      padding: 10px 25px;
+      padding: 8px 25px;
       border-radius: 8px;
       display: inline-block;
       box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
 
     .navbar-custom img {
-      height: 55px;
+      height: 50px;
       width: auto;
       display: block;
     }
@@ -147,29 +147,22 @@
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
   <script>
-    // URL exacta derivada de tu enlace de publicación
-    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pub?output=csv';
-
-    Papa.parse(CSV_URL, {
-      download: true,
-      header: false,
-      complete: function(results) {
-        const rows = results.data;
+    // Callback para procesar la respuesta sin bloqueo CORS
+    function procesarDatosGoogleSheets(json) {
+      try {
+        const rows = json.table.rows;
         let htmlContent = '';
 
-        // Recorrer las filas buscando IDs que comiencen con APSO
-        for (let i = 0; i < rows.length; i++) {
-          const fila = rows[i];
-          if (!fila || fila.length === 0) continue;
+        rows.forEach(row => {
+          if (!row.c) return;
 
-          const id = fila[0] ? fila[0].trim() : '';
-          const equipo = fila[1] ? fila[1].trim() : '';
-          const ubicacion = fila[2] ? fila[2].trim() : '';
-          const fechaUltimo = fila[3] ? fila[3].trim() : '';
-          const condicion = fila[4] ? fila[4].trim() : '';
+          const id = row.c[0] && row.c[0].v ? String(row.c[0].v).trim() : '';
+          const equipo = row.c[1] && row.c[1].v ? String(row.c[1].v).trim() : 'N/A';
+          const ubicacion = row.c[2] && row.c[2].v ? String(row.c[2].v).trim() : 'N/A';
+          const fechaUltimo = row.c[3] && row.c[3].f ? String(row.c[3].f) : (row.c[3] && row.c[3].v ? String(row.c[3].v) : 'N/A');
+          const condicion = row.c[4] && row.c[4].v ? String(row.c[4].v).trim() : 'N/A';
 
           if (id && id.toUpperCase().startsWith('APSO')) {
             let badgeColor = 'bg-secondary';
@@ -184,20 +177,20 @@
             htmlContent += `
               <tr>
                 <td><a href="equipo.html?id=${encodeURIComponent(id)}" class="btn-id"><i class="fa-solid fa-desktop me-1"></i> ${id}</a></td>
-                <td>${equipo || 'N/A'}</td>
-                <td>${ubicacion || 'N/A'}</td>
-                <td>${fechaUltimo || 'N/A'}</td>
-                <td><span class="badge ${badgeColor}">${condicion || 'N/A'}</span></td>
+                <td>${equipo}</td>
+                <td>${ubicacion}</td>
+                <td>${fechaUltimo}</td>
+                <td><span class="badge ${badgeColor}">${condicion}</span></td>
               </tr>
             `;
           }
-        }
+        });
 
         document.getElementById('tablaCuerpo').innerHTML = htmlContent;
         document.getElementById('loading').classList.add('d-none');
         document.getElementById('tableContainer').classList.remove('d-none');
 
-        // Inicializar tabla con buscador y paginación
+        // Inicializar DataTable
         $('#tablaInventario').DataTable({
           "language": {
             "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
@@ -205,17 +198,17 @@
           "pageLength": 10,
           "responsive": true
         });
-      },
-      error: function(err) {
-        console.error("Error al leer datos:", err);
-        document.getElementById('loading').innerHTML = `
-          <div class="alert alert-danger" role="alert">
-            <i class="fa-solid fa-triangle-exclamation me-2"></i>
-            No se pudieron cargar los datos.
-          </div>
-        `;
+
+      } catch (err) {
+        console.error("Error leyendo datos:", err);
+        document.getElementById('loading').innerHTML = '<p class="text-danger">Error al procesar la información de la tabla.</p>';
       }
-    });
+    }
+
+    // Inyección de script JSONP para evitar CORS
+    const script = document.createElement('script');
+    script.src = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/gviz/tq?tqx=responseHandler:procesarDatosGoogleSheets';
+    document.body.appendChild(script);
   </script>
 </body>
 </html>

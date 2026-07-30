@@ -1,61 +1,237 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Ficha Técnica - APSORAD</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    <style>
-        body { font-family: sans-serif; padding: 20px; background: #f4f7f6; }
-        .container { background: white; max-width: 700px; margin: auto; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .logo { display: block; margin: 0 auto 20px; width: 180px; }
-        h1 { color: #2c3e50; text-align: center; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        .data-item { margin-bottom: 15px; line-height: 1.6; }
-        .label { font-weight: bold; color: #34495e; display: block; margin-bottom: 5px; }
-        .volver { display: inline-block; margin-top: 20px; color: #3498db; text-decoration: none; font-weight: bold; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle del Equipo - APSORAD</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #13192B;
+      --accent-color: #008080;
+      --bg-color: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text-dark: #1E293B;
+      --text-muted: #64748B;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      padding-bottom: 50px;
+    }
+
+    .navbar-custom {
+      background-color: var(--primary-color);
+      padding: 15px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .navbar-custom img {
+      max-height: 50px;
+    }
+
+    .equipment-header {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 30px;
+      margin-bottom: 25px;
+      border-left: 6px solid var(--accent-color);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .equipment-title {
+      color: var(--primary-color);
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .equipment-badge {
+      background-color: #E0F2FE;
+      color: #0369A1;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      color: var(--primary-color);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid #F1F5F9;
+      padding-bottom: 8px;
+    }
+
+    .section-title i {
+      color: var(--accent-color);
+    }
+
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed #E2E8F0;
+    }
+
+    .data-row:last-child {
+      border-bottom: none;
+    }
+
+    .data-label {
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .data-value {
+      font-weight: 600;
+      color: var(--text-dark);
+      text-align: right;
+    }
+
+    .btn-back {
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 8px;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-back:hover {
+      background-color: var(--accent-color);
+      color: white;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <img src="logo1.jpg" alt="Logo APSORAD" class="logo">
-    <div id="detalle">Cargando información...</div>
-</div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-custom">
+    <div class="container justify-content-center">
+      <a class="navbar-brand m-0" href="index.html">
+        <img src="logo1.jpg" alt="APSORAD Logo">
+      </a>
+    </div>
+  </nav>
 
-<script>
-    const params = new URLSearchParams(window.location.search);
-    const idBuscado = params.get('id');
-    // Esta es la URL corregida para formato CSV
-    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pub?output=csv';
+  <div class="container" style="max-width: 900px;">
+    
+    <div class="equipment-header">
+      <div>
+        <h2 class="equipment-title" id="tipoEquipo">Cargando...</h2>
+        <span class="text-muted" id="subtitulo">Consultando Google Sheets</span>
+      </div>
+      <div class="mt-2 mt-sm-0">
+        <span class="equipment-badge" id="idEquipo">...</span>
+      </div>
+    </div>
 
-    const formatearTexto = (texto) => texto ? texto.replace(/\n/g, '<br>') : 'N/A';
+    <div class="row">
+      <div class="col-md-6">
+        <div class="section-card">
+          <div class="section-title">
+            <i class="fa-solid fa-circle-info"></i> Información General
+          </div>
+          <div class="data-row">
+            <span class="data-label">Marca:</span>
+            <span class="data-value" id="marca">-</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">Modelo:</span>
+            <span class="data-value" id="modelo">-</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">Asignado a:</span>
+            <span class="data-value" id="asignado">-</span>
+          </div>
+        </div>
 
-    Papa.parse(csvUrl, {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: function(results) {
-            const equipo = results.data.find(e => 
-                e.IDENTIFICACION && e.IDENTIFICACION.trim() === idBuscado.trim()
-            );
-            
-            if (equipo) {
-                document.getElementById('detalle').innerHTML = `
-                    <h1>${equipo.EQUIPO}</h1>
-                    <div class="data-item"><span class="label">ID:</span> ${equipo.IDENTIFICACION}</div>
-                    <div class="data-item"><span class="label">Marca:</span> ${equipo.MARCA}</div>
-                    <div class="data-item"><span class="label">Modelo:</span> ${equipo.MODELO}</div>
-                    <div class="data-item"><span class="label">Asignado a:</span> ${equipo.ASIGNADO}</div>
-                    <div class="data-item"><span class="label">Historial de Eventos:</span><br>${formatearTexto(equipo["HISTORIAL DE EVENTOS"])}</div>
-                    <div class="data-item"><span class="label">Características:</span><br>${formatearTexto(equipo.CARACTERISTICAS || equipo.CARACTERÍSTICAS)}</div>
-                    <div class="data-item"><span class="label">Monitores:</span><br>${formatearTexto(equipo.MONITORES)}</div>
-                    <div class="data-item"><span class="label">Teclado y Mouse:</span> ${equipo["TECLADO Y MOUSE"]}</div>
-                    <a href="index.html" class="volver">← Volver al Inventario</a>
-                `;
-            } else {
-                document.getElementById('detalle').innerHTML = "<h1>Error</h1><p>No se encontró el equipo: " + idBuscado + "</p><a href='index.html' class='volver'>Volver</a>";
-            }
-        }
-    });
-</script>
+        <div class="section-card">
+          <div class="section-title">
+            <i class="fa-solid fa-clock-rotate-left"></i> Historial de Eventos
+          </div>
+          <p class="text-muted mb-0" id="historial">-</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="section-card">
+          <div class="section-title">
+            <i class="fa-solid fa-microchip"></i> Características Técnicas
+          </div>
+          <div id="caracteristicas">
+            <p class="text-muted">Cargando características...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="índice.html" class="btn-back">
+        <i class="fa-solid fa-arrow-left"></i> Volver al Inventario
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    // ⚠️ COLOCA AQUÍ EL ID DE TU GOOGLE SHEET
+    const SHEET_ID = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms';
+    const urlParams = new URLSearchParams(window.location.search);
+    const idBusqueda = urlParams.get('id');
+
+    if (idBusqueda) {
+      document.getElementById('idEquipo').innerText = idBusqueda;
+      const URL_GVS = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+
+      fetch(URL_GVS)
+        .then(res => res.text())
+        .then(rep => {
+          const data = JSON.parse(rep.substr(47).slice(0, -2));
+          const rows = data.table.rows;
+
+          const equipoEncontrado = rows.find(r => r.c[0] && r.c[0].v === idBusqueda);
+
+          if (equipoEncontrado) {
+            document.getElementById('tipoEquipo').innerText = equipoEncontrado.c[1] ? equipoEncontrado.c[1].v : 'Equipo';
+            document.getElementById('subtitulo').innerText = `${equipoEncontrado.c[2] ? equipoEncontrado.c[2].v : ''} ${equipoEncontrado.c[3] ? equipoEncontrado.c[3].v : ''}`;
+            document.getElementById('marca').innerText = equipoEncontrado.c[2] ? equipoEncontrado.c[2].v : 'N/A';
+            document.getElementById('modelo').innerText = equipoEncontrado.c[3] ? equipoEncontrado.c[3].v : 'N/A';
+            document.getElementById('asignado').innerText = equipoEncontrado.c[4] ? equipoEncontrado.c[4].v : 'N/A';
+            document.getElementById('historial').innerText = equipoEncontrado.c[5] ? equipoEncontrado.c[5].v : 'N/A';
+
+            // Cargar características adicionales
+            const detalles = equipoEncontrado.c[6] ? equipoEncontrado.c[6].v : 'Sin detalles registrados.';
+            document.getElementById('caracteristicas').innerHTML = `<p style="white-space: pre-line;">${detalles}</p>`;
+          }
+        });
+    }
+  </script>
 </body>
 </html>

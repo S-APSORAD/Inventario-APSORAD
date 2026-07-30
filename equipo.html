@@ -27,12 +27,22 @@
 
     .navbar-custom {
       background-color: var(--primary-color);
-      padding: 15px 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      padding: 16px 0;
+    }
+
+    .navbar-logo-box {
+      background: #FFFFFF;
+      padding: 10px 25px;
+      border-radius: 8px;
+      display: inline-block;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
 
     .navbar-custom img {
-      max-height: 50px;
+      height: 55px;
+      width: auto;
+      display: block;
     }
 
     .equipment-header {
@@ -134,9 +144,11 @@
   <!-- Navbar -->
   <nav class="navbar navbar-custom">
     <div class="container justify-content-center">
-      <a class="navbar-brand m-0" href="index.html">
-        <img src="logo1.jpg" alt="APSORAD Logo">
-      </a>
+      <div class="navbar-logo-box">
+        <a href="índice.html">
+          <img src="logo1.jpg" alt="APSORAD Logo">
+        </a>
+      </div>
     </div>
   </nav>
 
@@ -145,7 +157,7 @@
     <div class="equipment-header">
       <div>
         <h2 class="equipment-title" id="tipoEquipo">Cargando...</h2>
-        <span class="text-muted" id="subtitulo">Consultando Google Sheets</span>
+        <span class="text-muted" id="subtitulo">Consultando Inventario</span>
       </div>
       <div class="mt-2 mt-sm-0">
         <span class="equipment-badge" id="idEquipo">...</span>
@@ -159,34 +171,36 @@
             <i class="fa-solid fa-circle-info"></i> Información General
           </div>
           <div class="data-row">
-            <span class="data-label">Marca:</span>
-            <span class="data-value" id="marca">-</span>
+            <span class="data-label">Ubicación / Asignado:</span>
+            <span class="data-value" id="ubicacion">-</span>
           </div>
           <div class="data-row">
-            <span class="data-label">Modelo:</span>
-            <span class="data-value" id="modelo">-</span>
+            <span class="data-label">Último Servicio:</span>
+            <span class="data-value" id="fechaUltimo">-</span>
           </div>
           <div class="data-row">
-            <span class="data-label">Asignado a:</span>
-            <span class="data-value" id="asignado">-</span>
+            <span class="data-label">Condición Actual:</span>
+            <span class="data-value" id="condicion">-</span>
           </div>
-        </div>
-
-        <div class="section-card">
-          <div class="section-title">
-            <i class="fa-solid fa-clock-rotate-left"></i> Historial de Eventos
+          <div class="data-row">
+            <span class="data-label">Frecuencia:</span>
+            <span class="data-value" id="frecuencia">-</span>
           </div>
-          <p class="text-muted mb-0" id="historial">-</p>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="section-card">
           <div class="section-title">
-            <i class="fa-solid fa-microchip"></i> Características Técnicas
+            <i class="fa-solid fa-calendar-check"></i> Próxima Revisión
           </div>
-          <div id="caracteristicas">
-            <p class="text-muted">Cargando características...</p>
+          <div class="data-row">
+            <span class="data-label">Fecha Programada:</span>
+            <span class="data-value" id="fechaProx">-</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">Estado:</span>
+            <span class="data-value" id="estado">-</span>
           </div>
         </div>
       </div>
@@ -200,37 +214,36 @@
 
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   <script>
-    // ⚠️ COLOCA AQUÍ EL ID DE TU GOOGLE SHEET
-    const SHEET_ID = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms';
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pub?output=csv';
     const urlParams = new URLSearchParams(window.location.search);
     const idBusqueda = urlParams.get('id');
 
     if (idBusqueda) {
       document.getElementById('idEquipo').innerText = idBusqueda;
-      const URL_GVS = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
 
-      fetch(URL_GVS)
-        .then(res => res.text())
-        .then(rep => {
-          const data = JSON.parse(rep.substr(47).slice(0, -2));
-          const rows = data.table.rows;
-
-          const equipoEncontrado = rows.find(r => r.c[0] && r.c[0].v === idBusqueda);
+      Papa.parse(CSV_URL, {
+        download: true,
+        header: false,
+        complete: function(results) {
+          const rows = results.data;
+          const equipoEncontrado = rows.find(r => r && r[0] && r[0].trim() === idBusqueda.trim());
 
           if (equipoEncontrado) {
-            document.getElementById('tipoEquipo').innerText = equipoEncontrado.c[1] ? equipoEncontrado.c[1].v : 'Equipo';
-            document.getElementById('subtitulo').innerText = `${equipoEncontrado.c[2] ? equipoEncontrado.c[2].v : ''} ${equipoEncontrado.c[3] ? equipoEncontrado.c[3].v : ''}`;
-            document.getElementById('marca').innerText = equipoEncontrado.c[2] ? equipoEncontrado.c[2].v : 'N/A';
-            document.getElementById('modelo').innerText = equipoEncontrado.c[3] ? equipoEncontrado.c[3].v : 'N/A';
-            document.getElementById('asignado').innerText = equipoEncontrado.c[4] ? equipoEncontrado.c[4].v : 'N/A';
-            document.getElementById('historial').innerText = equipoEncontrado.c[5] ? equipoEncontrado.c[5].v : 'N/A';
-
-            // Cargar características adicionales
-            const detalles = equipoEncontrado.c[6] ? equipoEncontrado.c[6].v : 'Sin detalles registrados.';
-            document.getElementById('caracteristicas').innerHTML = `<p style="white-space: pre-line;">${detalles}</p>`;
+            document.getElementById('tipoEquipo').innerText = equipoEncontrado[1] ? equipoEncontrado[1].trim() : 'Equipo';
+            document.getElementById('subtitulo').innerText = `Detalle del equipo ${idBusqueda}`;
+            document.getElementById('ubicacion').innerText = equipoEncontrado[2] ? equipoEncontrado[2].trim() : 'N/A';
+            document.getElementById('fechaUltimo').innerText = equipoEncontrado[3] ? equipoEncontrado[3].trim() : 'N/A';
+            document.getElementById('condicion').innerText = equipoEncontrado[4] ? equipoEncontrado[4].trim() : 'N/A';
+            document.getElementById('frecuencia').innerText = equipoEncontrado[5] ? equipoEncontrado[5].trim() : 'N/A';
+            document.getElementById('fechaProx').innerText = equipoEncontrado[6] ? equipoEncontrado[6].trim() : 'N/A';
+            document.getElementById('estado').innerText = equipoEncontrado[7] ? equipoEncontrado[7].trim() : 'N/A';
+          } else {
+            document.getElementById('tipoEquipo').innerText = "Equipo no encontrado";
           }
-        });
+        }
+      });
     }
   </script>
 </body>

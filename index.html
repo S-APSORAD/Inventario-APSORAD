@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inventario de Equipos - APSORAD</title>
   
-  <!-- CSS Bootstrap 5 y DataTables -->
+  <!-- CSS Bootstrap 5, DataTables y FontAwesome -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -24,56 +24,53 @@
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
 
-    /* ENCABEZADO MEJORADO SIN CAJA BLANCA RARA */
+    /* ENCABEZADO INTEGRADO Y ELEGANTE */
     .navbar-custom {
-      background: linear-gradient(135deg, #13192B 0%, #1A233A 100%);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-      padding: 16px 0;
+      background: linear-gradient(135deg, #13192B 0%, #1E293B 100%);
       border-bottom: 3px solid var(--accent-color);
+      padding: 14px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     }
 
-    .brand-container {
+    .brand-wrapper {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 16px;
       text-decoration: none;
     }
 
-    /* Recorte inteligente para eliminar márgenes blancos del archivo de imagen */
-    .logo-crop {
-      width: 180px;
-      height: 50px;
-      overflow: hidden;
+    .brand-logo-box {
+      background-color: #FFFFFF;
+      padding: 6px 14px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #FFFFFF;
-      border-radius: 8px;
-      padding: 5px 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
-    .logo-crop img {
-      max-height: 42px;
+    .brand-logo-box img {
+      height: 44px;
       width: auto;
       object-fit: contain;
+      display: block;
     }
 
-    .brand-text {
+    .brand-title {
       color: #FFFFFF;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      letter-spacing: 1px;
       margin: 0;
-      border-left: 2px solid rgba(255,255,255,0.2);
-      padding-left: 15px;
+      letter-spacing: 0.8px;
+      line-height: 1.2;
     }
 
     .brand-subtitle {
-      color: #94A3B8;
-      font-size: 0.8rem;
-      font-weight: 400;
+      color: #008080;
+      font-size: 0.82rem;
+      font-weight: 600;
       display: block;
+      letter-spacing: 0.5px;
     }
 
     .main-card {
@@ -139,16 +136,16 @@
 
   <!-- Encabezado APSORAD -->
   <nav class="navbar navbar-custom">
-    <div class="container justify-content-between align-items-center">
-      <div class="brand-container">
-        <div class="logo-crop">
+    <div class="container justify-content-start">
+      <a href="index.html" class="brand-wrapper">
+        <div class="brand-logo-box">
           <img src="logo1.jpg" alt="APSORAD Logo">
         </div>
         <div>
-          <h1 class="brand-text">APSORAD</h1>
-          <span class="brand-subtitle">Plataforma de Control de Inventario</span>
+          <h1 class="brand-title">APSORAD</h1>
+          <span class="brand-subtitle">Control de Inventario de Equipos</span>
         </div>
-      </div>
+      </a>
     </div>
   </nav>
 
@@ -200,11 +197,11 @@
           const fila = rows[i];
           if (!fila || fila.length === 0) continue;
 
-          const id = fila[0] ? fila[0].trim() : '';      
-          const equipo = fila[1] ? fila[1].trim() : '';  
-          const marca = fila[2] ? fila[2].trim() : '';   
-          const modelo = fila[3] ? fila[3].trim() : '';  
-          const asignado = fila[5] ? fila[5].trim() : '';
+          const id = fila[0] ? fila[0].trim() : '';      // A: IDENTIFICACION
+          const equipo = fila[1] ? fila[1].trim() : '';  // B: EQUIPO
+          const marca = fila[2] ? fila[2].trim() : '';   // C: MARCA
+          const modelo = fila[3] ? fila[3].trim() : '';  // D: MODELO
+          const asignado = fila[5] ? fila[5].trim() : '';// F: ASIGNADO
 
           if (id && id.toUpperCase().startsWith('APSO')) {
             htmlContent += `

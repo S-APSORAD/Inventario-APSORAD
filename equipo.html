@@ -25,25 +25,53 @@
       padding-bottom: 50px;
     }
 
+    /* ENCABEZADO INTEGRADO */
     .navbar-custom {
-      background-color: var(--primary-color);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      padding: 15px 0;
+      background: linear-gradient(135deg, #13192B 0%, #1E293B 100%);
+      border-bottom: 3px solid var(--accent-color);
+      padding: 14px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     }
 
-    .brand-logo-wrapper {
-      background: #FFFFFF;
-      padding: 8px 25px;
+    .brand-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+    }
+
+    .brand-logo-box {
+      background-color: #FFFFFF;
+      padding: 6px 14px;
       border-radius: 8px;
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
-    .brand-logo-wrapper img {
-      max-height: 50px;
+    .brand-logo-box img {
+      height: 44px;
       width: auto;
       object-fit: contain;
+      display: block;
+    }
+
+    .brand-title {
+      color: #FFFFFF;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: 0.8px;
+      line-height: 1.2;
+    }
+
+    .brand-subtitle {
+      color: #008080;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: block;
+      letter-spacing: 0.5px;
     }
 
     .equipment-header {
@@ -132,6 +160,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      transition: all 0.2s ease;
     }
 
     .btn-back:hover {
@@ -144,12 +173,16 @@
 
   <!-- Navbar -->
   <nav class="navbar navbar-custom">
-    <div class="container justify-content-center">
-      <div class="brand-logo-wrapper">
-        <a href="index.html">
+    <div class="container justify-content-start">
+      <a href="index.html" class="brand-wrapper">
+        <div class="brand-logo-box">
           <img src="logo1.jpg" alt="APSORAD Logo">
-        </a>
-      </div>
+        </div>
+        <div>
+          <h1 class="brand-title">APSORAD</h1>
+          <span class="brand-subtitle">Control de Inventario de Equipos</span>
+        </div>
+      </a>
     </div>
   </nav>
 
@@ -228,7 +261,6 @@
     </div>
 
     <div class="text-center mt-4">
-      <!-- Apunta a index.html sin tilde para evitar error 404 -->
       <a href="index.html" class="btn-back">
         <i class="fa-solid fa-arrow-left"></i> Volver al Inventario
       </a>

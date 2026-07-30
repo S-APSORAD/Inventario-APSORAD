@@ -1,55 +1,193 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Inventario APSORAD</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <style>
-        body { font-family: sans-serif; padding: 20px; }
-        .logo { display: block; margin: 0 auto 20px; width: 200px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario de Equipos - APSORAD</title>
+  
+  <!-- CSS Bootstrap 5 y DataTables -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-color: #13192B;
+      --accent-color: #008080;
+      --bg-color: #F8FAFC;
+      --text-color: #2C3E50;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    .navbar-custom {
+      background-color: var(--primary-color);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 15px 0;
+    }
+
+    .navbar-custom img {
+      max-height: 50px;
+    }
+
+    .main-card {
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+      padding: 28px;
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
+
+    .table-title {
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 1.6rem;
+      border-left: 5px solid var(--accent-color);
+      padding-left: 12px;
+      margin-bottom: 25px;
+    }
+
+    table.dataTable thead th {
+      background-color: var(--primary-color) !important;
+      color: #ffffff !important;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      border: none !important;
+      padding: 14px 16px !important;
+    }
+
+    table.dataTable tbody td {
+      padding: 14px 16px !important;
+      vertical-align: middle;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .btn-id {
+      background-color: #E0F2FE;
+      color: #0369A1;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+
+    .btn-id:hover {
+      background-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    #loading {
+      text-align: center;
+      padding: 40px;
+      font-weight: 600;
+      color: var(--accent-color);
+    }
+  </style>
 </head>
 <body>
-    <img src="logo1.jpg" alt="Logo APSORAD" class="logo">
-    <h2>Inventario de Equipos</h2>
-    <table id="miInventario" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Equipo</th>
-                <th>Marca</th>
-                <th>Modelo</th>
-                <th>Asignado</th>
-            </tr>
-        </thead>
-    </table>
-    <script>
-        $(document).ready(function() {
-            // PEGA AQUÍ TU URL DE GOOGLE SHEETS PUBLICADA
-            const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pub?output=csv'; 
 
-            Papa.parse(csvUrl, {
-                download: true,
-                header: true,
-                complete: function(results) {
-                    $('#miInventario').DataTable({
-                        data: results.data,
-                        columns: [
-                            { data: "IDENTIFICACION", render: function(data) {
-                                return '<a href="equipo.html?id=' + encodeURIComponent(data) + '">' + data + '</a>';
-                            }},
-                            { data: "EQUIPO" },
-                            { data: "MARCA" },
-                            { data: "MODELO" },
-                            { data: "ASIGNADO" }
-                        ]
-                    });
-                }
-            });
+  <!-- Encabezado APSORAD -->
+  <nav class="navbar navbar-custom">
+    <div class="container justify-content-center">
+      <a class="navbar-brand m-0" href="#">
+        <img src="logo1.jpg" alt="APSORAD Logo">
+      </a>
+    </div>
+  </nav>
+
+  <!-- Contenedor Principal -->
+  <div class="container">
+    <div class="main-card">
+      <h2 class="table-title">Inventario de Equipos</h2>
+      
+      <div id="loading">
+        <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+        <p class="mt-2">Cargando datos desde Google Sheets...</p>
+      </div>
+
+      <div class="table-responsive d-none" id="tableContainer">
+        <table id="tablaInventario" class="table table-hover align-middle w-100">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Equipo</th>
+              <th>Marca</th>
+              <th>Modelo</th>
+              <th>Asignado a</th>
+            </tr>
+          </thead>
+          <tbody id="tablaCuerpo">
+            <!-- Los datos se cargan dinámicamente desde Google Sheets -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+  <script>
+    // ⚠️ REEMPLAZA ESTE CÓDIGO POR EL ID DE TU GOOGLE SHEET
+    const SHEET_ID = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms';
+    const URL_GVS = `https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pub?output=csv';
+
+    fetch(URL_GVS)
+      .then(res => res.text())
+      .then(rep => {
+        // Limpiar el JSON que entrega la API de Google Visualizations
+        const data = JSON.parse(rep.substr(47).slice(0, -2));
+        const rows = data.table.rows;
+        let htmlContent = '';
+
+        rows.forEach(row => {
+          const id = row.c[0] ? row.c[0].v : '';
+          const equipo = row.c[1] ? row.c[1].v : '';
+          const marca = row.c[2] ? row.c[2].v : '';
+          const modelo = row.c[3] ? row.c[3].v : '';
+          const asignado = row.c[4] ? row.c[4].v : '';
+
+          if (id && id !== 'ID') {
+            htmlContent += `
+              <tr>
+                <td><a href="equipo.html?id=${id}" class="btn-id"><i class="fa-solid fa-desktop me-1"></i> ${id}</a></td>
+                <td>${equipo}</td>
+                <td>${marca}</td>
+                <td>${modelo}</td>
+                <td>${asignado}</td>
+              </tr>
+            `;
+          }
         });
-    </script>
+
+        document.getElementById('tablaCuerpo').innerHTML = htmlContent;
+        document.getElementById('loading').classList.add('d-none');
+        document.getElementById('tableContainer').classList.remove('d-none');
+
+        // Inicializar DataTables con diseño
+        $('#tablaInventario').DataTable({
+          "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+          },
+          "pageLength": 10,
+          "responsive": true
+        });
+      })
+      .catch(err => {
+        console.error('Error al cargar datos:', err);
+        document.getElementById('loading').innerHTML = '<p class="text-danger">Error al conectar con Google Sheets.</p>';
+      });
+  </script>
 </body>
 </html>

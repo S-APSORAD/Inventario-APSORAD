@@ -24,7 +24,6 @@
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
 
-    /* ENCABEZADO Y LOGO PROFESIONAL */
     .navbar-custom {
       background-color: var(--primary-color);
       box-shadow: 0 4px 15px rgba(0,0,0,0.15);
@@ -33,7 +32,7 @@
 
     .brand-logo-wrapper {
       background: #FFFFFF;
-      padding: 8px 30px;
+      padding: 8px 25px;
       border-radius: 8px;
       display: inline-flex;
       align-items: center;
@@ -41,7 +40,7 @@
     }
 
     .brand-logo-wrapper img {
-      max-height: 55px;
+      max-height: 50px;
       width: auto;
       object-fit: contain;
     }
@@ -132,9 +131,9 @@
             <tr>
               <th>ID</th>
               <th>Equipo</th>
-              <th>Ubicación / Asignado</th>
-              <th>Fecha Último Servicio</th>
-              <th>Condición</th>
+              <th>Marca</th>
+              <th>Modelo</th>
+              <th>Asignado A</th>
             </tr>
           </thead>
           <tbody id="tablaCuerpo">
@@ -151,10 +150,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
   <script>
-    // Enlace público CSV de tu documento de Google Sheets
     const URL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pub?output=csv";
 
-    // Descarga y lectura directa
     Papa.parse(URL_CSV, {
       download: true,
       skipEmptyLines: true,
@@ -162,40 +159,28 @@
         const rows = results.data;
         let htmlContent = '';
 
-        rows.forEach(fila => {
-          if (!fila || fila.length === 0) return;
+        // Recorremos desde la fila 2 (índice 1 en adelante)
+        for (let i = 1; i < rows.length; i++) {
+          const fila = rows[i];
+          if (!fila || fila.length === 0) continue;
 
-          const id = fila[0] ? fila[0].trim() : '';
-          const equipo = fila[1] ? fila[1].trim() : 'N/A';
-          const ubicacion = fila[2] ? fila[2].trim() : 'N/A';
-          const fechaUltimo = fila[3] ? fila[3].trim() : 'N/A';
-          const condicion = fila[4] ? fila[4].trim() : 'N/A';
+          const id = fila[0] ? fila[0].trim() : '';      // A: IDENTIFICACION
+          const equipo = fila[1] ? fila[1].trim() : '';  // B: EQUIPO
+          const marca = fila[2] ? fila[2].trim() : '';   // C: MARCA
+          const modelo = fila[3] ? fila[3].trim() : '';  // D: MODELO
+          const asignado = fila[5] ? fila[5].trim() : '';// F: ASIGNADO
 
           if (id && id.toUpperCase().startsWith('APSO')) {
-            let badgeColor = 'bg-secondary';
-            if (condicion.toLowerCase().includes('óptima') || condicion.toLowerCase().includes('optima')) {
-              badgeColor = 'bg-success';
-            } else if (condicion.toLowerCase().includes('media')) {
-              badgeColor = 'bg-warning text-dark';
-            } else if (condicion.toLowerCase().includes('crítica') || condicion.toLowerCase().includes('critica')) {
-              badgeColor = 'bg-danger';
-            }
-
             htmlContent += `
               <tr>
                 <td><a href="equipo.html?id=${encodeURIComponent(id)}" class="btn-id"><i class="fa-solid fa-desktop me-1"></i> ${id}</a></td>
-                <td>${equipo}</td>
-                <td>${ubicacion}</td>
-                <td>${fechaUltimo}</td>
-                <td><span class="badge ${badgeColor}">${condicion}</span></td>
+                <td>${equipo || 'N/A'}</td>
+                <td>${marca || 'N/A'}</td>
+                <td>${modelo || 'N/A'}</td>
+                <td>${asignado || 'N/A'}</td>
               </tr>
             `;
           }
-        });
-
-        if (htmlContent === '') {
-          document.getElementById('loading').innerHTML = '<p class="text-warning">No se encontraron equipos registrados en el documento.</p>';
-          return;
         }
 
         document.getElementById('tablaCuerpo').innerHTML = htmlContent;

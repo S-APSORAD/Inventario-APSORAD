@@ -24,25 +24,56 @@
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
 
+    /* ENCABEZADO MEJORADO SIN CAJA BLANCA RARA */
     .navbar-custom {
-      background-color: var(--primary-color);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      padding: 15px 0;
+      background: linear-gradient(135deg, #13192B 0%, #1A233A 100%);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      padding: 16px 0;
+      border-bottom: 3px solid var(--accent-color);
     }
 
-    .brand-logo-wrapper {
-      background: #FFFFFF;
-      padding: 8px 25px;
-      border-radius: 8px;
-      display: inline-flex;
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-decoration: none;
+    }
+
+    /* Recorte inteligente para eliminar márgenes blancos del archivo de imagen */
+    .logo-crop {
+      width: 180px;
+      height: 50px;
+      overflow: hidden;
+      display: flex;
       align-items: center;
       justify-content: center;
+      background: #FFFFFF;
+      border-radius: 8px;
+      padding: 5px 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
-    .brand-logo-wrapper img {
-      max-height: 50px;
+    .logo-crop img {
+      max-height: 42px;
       width: auto;
       object-fit: contain;
+    }
+
+    .brand-text {
+      color: #FFFFFF;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin: 0;
+      border-left: 2px solid rgba(255,255,255,0.2);
+      padding-left: 15px;
+    }
+
+    .brand-subtitle {
+      color: #94A3B8;
+      font-size: 0.8rem;
+      font-weight: 400;
+      display: block;
     }
 
     .main-card {
@@ -108,9 +139,15 @@
 
   <!-- Encabezado APSORAD -->
   <nav class="navbar navbar-custom">
-    <div class="container justify-content-center">
-      <div class="brand-logo-wrapper">
-        <img src="logo1.jpg" alt="APSORAD Logo">
+    <div class="container justify-content-between align-items-center">
+      <div class="brand-container">
+        <div class="logo-crop">
+          <img src="logo1.jpg" alt="APSORAD Logo">
+        </div>
+        <div>
+          <h1 class="brand-text">APSORAD</h1>
+          <span class="brand-subtitle">Plataforma de Control de Inventario</span>
+        </div>
       </div>
     </div>
   </nav>
@@ -159,16 +196,15 @@
         const rows = results.data;
         let htmlContent = '';
 
-        // Recorremos desde la fila 2 (índice 1 en adelante)
         for (let i = 1; i < rows.length; i++) {
           const fila = rows[i];
           if (!fila || fila.length === 0) continue;
 
-          const id = fila[0] ? fila[0].trim() : '';      // A: IDENTIFICACION
-          const equipo = fila[1] ? fila[1].trim() : '';  // B: EQUIPO
-          const marca = fila[2] ? fila[2].trim() : '';   // C: MARCA
-          const modelo = fila[3] ? fila[3].trim() : '';  // D: MODELO
-          const asignado = fila[5] ? fila[5].trim() : '';// F: ASIGNADO
+          const id = fila[0] ? fila[0].trim() : '';      
+          const equipo = fila[1] ? fila[1].trim() : '';  
+          const marca = fila[2] ? fila[2].trim() : '';   
+          const modelo = fila[3] ? fila[3].trim() : '';  
+          const asignado = fila[5] ? fila[5].trim() : '';
 
           if (id && id.toUpperCase().startsWith('APSO')) {
             htmlContent += `

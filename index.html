@@ -24,14 +24,27 @@
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
 
+    /* ENCABEZADO CON LOGO PROPORCIONADO Y ELEGANTE */
     .navbar-custom {
       background-color: var(--primary-color);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
       padding: 15px 0;
     }
 
+    .navbar-brand-custom {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFFFFF;
+      padding: 8px 20px;
+      border-radius: 8px;
+    }
+
     .navbar-custom img {
-      max-height: 50px;
+      height: 50px;
+      width: auto;
+      display: block;
+      mix-blend-mode: multiply; /* Elimina bordes blancos raros */
     }
 
     .main-card {
@@ -40,7 +53,7 @@
       border: 1px solid #E2E8F0;
       box-shadow: 0 10px 25px rgba(0,0,0,0.03);
       padding: 28px;
-      margin-top: 30px;
+      margin-top: 35px;
       margin-bottom: 40px;
     }
 
@@ -87,7 +100,7 @@
 
     #loading {
       text-align: center;
-      padding: 40px;
+      padding: 50px;
       font-weight: 600;
       color: var(--accent-color);
     }
@@ -98,9 +111,9 @@
   <!-- Encabezado APSORAD -->
   <nav class="navbar navbar-custom">
     <div class="container justify-content-center">
-      <a class="navbar-brand m-0" href="#">
+      <div class="navbar-brand-custom">
         <img src="logo1.jpg" alt="APSORAD Logo">
-      </a>
+      </div>
     </div>
   </nav>
 
@@ -111,7 +124,7 @@
       
       <div id="loading">
         <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
-        <p class="mt-2">Cargando datos desde Google Sheets...</p>
+        <p class="mt-3">Cargando inventario desde Google Sheets...</p>
       </div>
 
       <div class="table-responsive d-none" id="tableContainer">
@@ -120,13 +133,12 @@
             <tr>
               <th>ID</th>
               <th>Equipo</th>
-              <th>Marca</th>
-              <th>Modelo</th>
-              <th>Asignado a</th>
+              <th>Ubicación / Asignado</th>
+              <th>Fecha Último Servicio</th>
+              <th>Condición</th>
             </tr>
           </thead>
           <tbody id="tablaCuerpo">
-            <!-- Los datos se cargan dinámicamente desde Google Sheets -->
           </tbody>
         </table>
       </div>
@@ -137,45 +149,47 @@
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
   <script>
-    // ⚠️ REEMPLAZA ESTE CÓDIGO POR EL ID DE TU GOOGLE SHEET
     const SHEET_ID = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms';
-    const URL_GVS = `https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pub?output=csv';
+    // URL Directa CSV (Sin bloqueos de API de Google)
+    const CSV_URL = `https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pub?output=csv';
 
-    fetch(URL_GVS)
-      .then(res => res.text())
-      .then(rep => {
-        // Limpiar el JSON que entrega la API de Google Visualizations
-        const data = JSON.parse(rep.substr(47).slice(0, -2));
-        const rows = data.table.rows;
+    Papa.parse(CSV_URL, {
+      download: true,
+      header: false,
+      complete: function(results) {
+        const rows = results.data;
         let htmlContent = '';
 
-        rows.forEach(row => {
-          const id = row.c[0] ? row.c[0].v : '';
-          const equipo = row.c[1] ? row.c[1].v : '';
-          const marca = row.c[2] ? row.c[2].v : '';
-          const modelo = row.c[3] ? row.c[3].v : '';
-          const asignado = row.c[4] ? row.c[4].v : '';
+        // Empezamos desde la fila 7 (index 6) que es donde inicia la data real en tu hoja
+        for (let i = 6; i < rows.length; i++) {
+          const fila = rows[i];
+          const id = fila[0] ? fila[0].trim() : '';
+          const equipo = fila[1] ? fila[1].trim() : '';
+          const ubicacion = fila[2] ? fila[2].trim() : '';
+          const fechaUltimo = fila[3] ? fila[3].trim() : '';
+          const condicion = fila[4] ? fila[4].trim() : '';
 
-          if (id && id !== 'ID') {
+          if (id && id.toUpperCase().startsWith('APSO')) {
             htmlContent += `
               <tr>
-                <td><a href="equipo.html?id=${id}" class="btn-id"><i class="fa-solid fa-desktop me-1"></i> ${id}</a></td>
-                <td>${equipo}</td>
-                <td>${marca}</td>
-                <td>${modelo}</td>
-                <td>${asignado}</td>
+                <td><a href="equipo.html?id=${encodeURIComponent(id)}" class="btn-id"><i class="fa-solid fa-desktop me-1"></i> ${id}</a></td>
+                <td>${equipo || 'N/A'}</td>
+                <td>${ubicacion || 'N/A'}</td>
+                <td>${fechaUltimo || 'N/A'}</td>
+                <td><span class="badge ${condicion.toLowerCase() === 'óptima' ? 'bg-success' : 'bg-warning text-dark'}">${condicion || 'N/A'}</span></td>
               </tr>
             `;
           }
-        });
+        }
 
         document.getElementById('tablaCuerpo').innerHTML = htmlContent;
         document.getElementById('loading').classList.add('d-none');
         document.getElementById('tableContainer').classList.remove('d-none');
 
-        // Inicializar DataTables con diseño
+        // Inicializar tabla con buscador y paginación
         $('#tablaInventario').DataTable({
           "language": {
             "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
@@ -183,11 +197,17 @@
           "pageLength": 10,
           "responsive": true
         });
-      })
-      .catch(err => {
-        console.error('Error al cargar datos:', err);
-        document.getElementById('loading').innerHTML = '<p class="text-danger">Error al conectar con Google Sheets.</p>';
-      });
+      },
+      error: function(err) {
+        console.error("Error al leer CSV:", err);
+        document.getElementById('loading').innerHTML = `
+          <div class="alert alert-danger" role="alert">
+            <i class="fa-solid fa-triangle-exclamation me-2"></i>
+            Asegúrate de que en tu Google Sheet vayas a <strong>Archivo > Compartir > Compartir con otros</strong> y lo dejes configurado como <strong>"Cualquier persona con el enlace puede ver"</strong>.
+          </div>
+        `;
+      }
+    });
   </script>
 </body>
 </html>

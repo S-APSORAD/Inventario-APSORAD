@@ -24,27 +24,25 @@
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
 
-    /* ENCABEZADO CON LOGO PROPORCIONADO Y ELEGANTE */
+    /* ENCABEZADO CON LOGO DESTACADO Y LIMPIO */
     .navbar-custom {
       background-color: var(--primary-color);
       box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      padding: 15px 0;
+      padding: 16px 0;
     }
 
-    .navbar-brand-custom {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    .navbar-logo-box {
       background: #FFFFFF;
-      padding: 8px 20px;
+      padding: 10px 25px;
       border-radius: 8px;
+      display: inline-block;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
 
     .navbar-custom img {
-      height: 50px;
+      height: 55px;
       width: auto;
       display: block;
-      mix-blend-mode: multiply; /* Elimina bordes blancos raros */
     }
 
     .main-card {
@@ -111,7 +109,7 @@
   <!-- Encabezado APSORAD -->
   <nav class="navbar navbar-custom">
     <div class="container justify-content-center">
-      <div class="navbar-brand-custom">
+      <div class="navbar-logo-box">
         <img src="logo1.jpg" alt="APSORAD Logo">
       </div>
     </div>
@@ -152,9 +150,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
   <script>
-    const SHEET_ID = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms';
-    // URL Directa CSV (Sin bloqueos de API de Google)
-    const CSV_URL = `https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pubhtml';
+    // URL exacta derivada de tu enlace de publicación
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQQJYf9abN7jDMI-SXS_eV0c3RPuXomqEyTAj2z8ZEN7FPxyEJjR2GdYIrd7Iv1eGL613lSV0CjXi_P/pub?output=csv';
 
     Papa.parse(CSV_URL, {
       download: true,
@@ -163,9 +160,11 @@
         const rows = results.data;
         let htmlContent = '';
 
-        // Empezamos desde la fila 7 (index 6) que es donde inicia la data real en tu hoja
-        for (let i = 6; i < rows.length; i++) {
+        // Recorrer las filas buscando IDs que comiencen con APSO
+        for (let i = 0; i < rows.length; i++) {
           const fila = rows[i];
+          if (!fila || fila.length === 0) continue;
+
           const id = fila[0] ? fila[0].trim() : '';
           const equipo = fila[1] ? fila[1].trim() : '';
           const ubicacion = fila[2] ? fila[2].trim() : '';
@@ -173,13 +172,22 @@
           const condicion = fila[4] ? fila[4].trim() : '';
 
           if (id && id.toUpperCase().startsWith('APSO')) {
+            let badgeColor = 'bg-secondary';
+            if (condicion.toLowerCase().includes('óptima') || condicion.toLowerCase().includes('optima')) {
+              badgeColor = 'bg-success';
+            } else if (condicion.toLowerCase().includes('media')) {
+              badgeColor = 'bg-warning text-dark';
+            } else if (condicion.toLowerCase().includes('crítica') || condicion.toLowerCase().includes('critica')) {
+              badgeColor = 'bg-danger';
+            }
+
             htmlContent += `
               <tr>
                 <td><a href="equipo.html?id=${encodeURIComponent(id)}" class="btn-id"><i class="fa-solid fa-desktop me-1"></i> ${id}</a></td>
                 <td>${equipo || 'N/A'}</td>
                 <td>${ubicacion || 'N/A'}</td>
                 <td>${fechaUltimo || 'N/A'}</td>
-                <td><span class="badge ${condicion.toLowerCase() === 'óptima' ? 'bg-success' : 'bg-warning text-dark'}">${condicion || 'N/A'}</span></td>
+                <td><span class="badge ${badgeColor}">${condicion || 'N/A'}</span></td>
               </tr>
             `;
           }
@@ -199,11 +207,11 @@
         });
       },
       error: function(err) {
-        console.error("Error al leer CSV:", err);
+        console.error("Error al leer datos:", err);
         document.getElementById('loading').innerHTML = `
           <div class="alert alert-danger" role="alert">
             <i class="fa-solid fa-triangle-exclamation me-2"></i>
-            Asegúrate de que en tu Google Sheet vayas a <strong>Archivo > Compartir > Compartir con otros</strong> y lo dejes configurado como <strong>"Cualquier persona con el enlace puede ver"</strong>.
+            No se pudieron cargar los datos.
           </div>
         `;
       }

@@ -124,6 +124,19 @@
       color: #ffffff;
     }
 
+    .sw-badge {
+      background-color: #E6F4F1;
+      color: #006666;
+      border: 1px solid #B2E0D8;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 4px;
+      padding: 2px 7px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      display: inline-block;
+    }
+
     #loading {
       text-align: center;
       padding: 50px;
@@ -168,6 +181,7 @@
               <th>Marca</th>
               <th>Modelo</th>
               <th>Asignado A</th>
+              <th>Software Principal</th>
             </tr>
           </thead>
           <tbody id="tablaCuerpo">
@@ -202,6 +216,14 @@
           const marca = fila[2] ? fila[2].trim() : '';   // C: MARCA
           const modelo = fila[3] ? fila[3].trim() : '';  // D: MODELO
           const asignado = fila[5] ? fila[5].trim() : '';// F: ASIGNADO
+          const softwareRaw = fila[10] ? fila[10].trim() : ''; // K: SOFTWARE
+
+          // Convertir el texto de software separado por comas en badget/píldoras
+          let softwareHTML = '<span class="text-muted small">Sin registrar</span>';
+          if (softwareRaw && softwareRaw.toUpperCase() !== 'N/A') {
+            const programas = softwareRaw.split(',').map(s => s.trim());
+            softwareHTML = programas.map(sw => `<span class="sw-badge">${sw}</span>`).join('');
+          }
 
           if (id && id.toUpperCase().startsWith('APSO')) {
             htmlContent += `
@@ -211,6 +233,7 @@
                 <td>${marca || 'N/A'}</td>
                 <td>${modelo || 'N/A'}</td>
                 <td>${asignado || 'N/A'}</td>
+                <td>${softwareHTML}</td>
               </tr>
             `;
           }

@@ -237,7 +237,7 @@
     </div>
 
     <div class="row g-3">
-      <!-- Columna Izquierda: Información General + Historial -->
+      <!-- Columna Izquierda: Información General -->
       <div class="col-md-6">
         <div class="section-card">
           <div class="section-title">
@@ -252,8 +252,12 @@
             <span class="data-value" id="modelo">-</span>
           </div>
           <div class="data-row">
-            <span class="data-label">Asignado a:</span>
+            <span class="data-label">Asignado a (Usuario):</span>
             <span class="data-value" id="asignado">-</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">Cargo:</span>
+            <span class="data-value" id="cargo">-</span>
           </div>
           <div class="data-row">
             <span class="data-label">Estado Activo:</span>
@@ -346,7 +350,7 @@
             document.getElementById('marca').innerText = equipoEncontrado[2] ? equipoEncontrado[2].trim() : 'N/A';
             document.getElementById('modelo').innerText = equipoEncontrado[3] ? equipoEncontrado[3].trim() : 'N/A';
             
-            // Estado Activo con diseño visual
+            // Estado Activo
             const estadoTexto = equipoEncontrado[4] ? equipoEncontrado[4].trim() : 'N/A';
             if (estadoTexto.toLowerCase() === 'si' || estadoTexto.toLowerCase() === 'sí') {
               document.getElementById('activo').innerHTML = '<span class="status-active"><i class="fa-solid fa-circle-check me-1"></i> Sí</span>';
@@ -363,7 +367,7 @@
             document.getElementById('monitores').innerText = equipoEncontrado[8] ? equipoEncontrado[8].trim() : 'N/A';
             document.getElementById('perifericos').innerText = equipoEncontrado[9] ? equipoEncontrado[9].trim() : 'N/A';
 
-            // Cargar y dar formato al Software (Columna K / Indice 10)
+            // Cargar Software (Columna K / Indice 10)
             const softwareRaw = equipoEncontrado[10] ? equipoEncontrado[10].trim() : '';
             if (softwareRaw && softwareRaw.toUpperCase() !== 'N/A') {
               const programas = softwareRaw.split(',').map(s => s.trim());
@@ -374,6 +378,9 @@
             } else {
               document.getElementById('software-container').innerHTML = '<p class="text-muted mb-0">Sin software o programas registrados para este equipo.</p>';
             }
+
+            // Cargar Cargo (Columna L / Indice 11)
+            document.getElementById('cargo').innerText = equipoEncontrado[11] ? equipoEncontrado[11].trim() : 'N/A';
 
           } else {
             document.getElementById('tipoEquipo').innerText = "Equipo no encontrado";

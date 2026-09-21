@@ -97,10 +97,10 @@
     .equipment-badge {
       background-color: #E0F2FE;
       color: #0369A1;
-      padding: 6px 14px;
+      padding: 8px 18px;
       border-radius: 20px;
-      font-weight: 600;
-      font-size: 0.95rem;
+      font-weight: 700;
+      font-size: 1rem;
     }
 
     .section-card {
@@ -110,6 +110,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.02);
       padding: 22px;
       margin-bottom: 20px;
+      height: calc(100% - 20px);
     }
 
     .section-title {
@@ -131,7 +132,8 @@
     .data-row {
       display: flex;
       justify-content: space-between;
-      padding: 8px 0;
+      align-items: center;
+      padding: 9px 0;
       border-bottom: 1px dashed #E2E8F0;
     }
 
@@ -150,11 +152,47 @@
       text-align: right;
     }
 
+    /* Píldoras de Software */
+    .software-tag {
+      background-color: #E6F4F1;
+      color: #006666;
+      border: 1px solid #B2E0D8;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-right: 6px;
+      margin-bottom: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    /* Píldora de estado Activo */
+    .status-active {
+      background-color: #DCFCE7;
+      color: #15803D;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .status-inactive {
+      background-color: #FEE2E2;
+      color: #B91C1C;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
     .btn-back {
       background-color: var(--primary-color);
       color: white;
       border-radius: 8px;
-      padding: 10px 20px;
+      padding: 10px 24px;
       text-decoration: none;
       font-weight: 600;
       display: inline-flex;
@@ -186,7 +224,7 @@
     </div>
   </nav>
 
-  <div class="container" style="max-width: 900px;">
+  <div class="container" style="max-width: 950px;">
     
     <div class="equipment-header">
       <div>
@@ -198,7 +236,8 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row g-3">
+      <!-- Columna Izquierda: Información General + Historial -->
       <div class="col-md-6">
         <div class="section-card">
           <div class="section-title">
@@ -217,19 +256,13 @@
             <span class="data-value" id="asignado">-</span>
           </div>
           <div class="data-row">
-            <span class="data-label">Activo:</span>
+            <span class="data-label">Estado Activo:</span>
             <span class="data-value" id="activo">-</span>
           </div>
         </div>
-
-        <div class="section-card">
-          <div class="section-title">
-            <i class="fa-solid fa-clock-rotate-left"></i> Historial de Eventos
-          </div>
-          <p class="text-muted mb-0" id="historial">-</p>
-        </div>
       </div>
 
+      <!-- Columna Derecha: Características Técnicas -->
       <div class="col-md-6">
         <div class="section-card">
           <div class="section-title">
@@ -241,21 +274,44 @@
         </div>
       </div>
 
+      <!-- Columna Completa: Software Instalado -->
       <div class="col-12">
         <div class="section-card">
           <div class="section-title">
-            <i class="fa-solid fa-desktop"></i> Periféricos
+            <i class="fa-solid fa-box-archive"></i> Software Instalado
+          </div>
+          <div id="software-container">
+            <p class="text-muted mb-0">Cargando lista de software...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna Completa: Periféricos -->
+      <div class="col-12">
+        <div class="section-card">
+          <div class="section-title">
+            <i class="fa-solid fa-desktop"></i> Periféricos y Accesorios
           </div>
           <div class="row">
             <div class="col-md-6">
-              <h6 class="fw-bold text-secondary">Monitores:</h6>
+              <h6 class="fw-bold text-secondary mb-2"><i class="fa-solid fa-display me-1"></i> Monitores:</h6>
               <p class="text-muted mb-0" id="monitores">-</p>
             </div>
-            <div class="col-md-6 mt-2 mt-md-0">
-              <h6 class="fw-bold text-secondary">Teclado y Mouse:</h6>
+            <div class="col-md-6 mt-3 mt-md-0">
+              <h6 class="fw-bold text-secondary mb-2"><i class="fa-solid fa-keyboard me-1"></i> Teclado y Mouse:</h6>
               <p class="text-muted mb-0" id="perifericos">-</p>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Columna Completa: Historial -->
+      <div class="col-12">
+        <div class="section-card">
+          <div class="section-title">
+            <i class="fa-solid fa-clock-rotate-left"></i> Historial de Eventos
+          </div>
+          <p class="text-muted mb-0" id="historial">-</p>
         </div>
       </div>
     </div>
@@ -282,24 +338,46 @@
         skipEmptyLines: true,
         complete: function(results) {
           const rows = results.data;
-          const equipoEncontrado = rows.find(r => r && r[0] && r[0].trim() === idBusqueda.trim());
+          const equipoEncontrado = rows.find(r => r && r[0] && r[0].trim().toUpperCase() === idBusqueda.trim().toUpperCase());
 
           if (equipoEncontrado) {
             document.getElementById('tipoEquipo').innerText = equipoEncontrado[1] ? equipoEncontrado[1].trim() : 'Equipo';
-            document.getElementById('subtitulo').innerText = `Detalle del equipo ${idBusqueda}`;
+            document.getElementById('subtitulo').innerText = `Detalle completo del equipo ${idBusqueda}`;
             document.getElementById('marca').innerText = equipoEncontrado[2] ? equipoEncontrado[2].trim() : 'N/A';
             document.getElementById('modelo').innerText = equipoEncontrado[3] ? equipoEncontrado[3].trim() : 'N/A';
-            document.getElementById('activo').innerText = equipoEncontrado[4] ? equipoEncontrado[4].trim() : 'N/A';
+            
+            // Estado Activo con diseño visual
+            const estadoTexto = equipoEncontrado[4] ? equipoEncontrado[4].trim() : 'N/A';
+            if (estadoTexto.toLowerCase() === 'si' || estadoTexto.toLowerCase() === 'sí') {
+              document.getElementById('activo').innerHTML = '<span class="status-active"><i class="fa-solid fa-circle-check me-1"></i> Sí</span>';
+            } else {
+              document.getElementById('activo').innerHTML = `<span class="status-inactive"><i class="fa-solid fa-circle-xmark me-1"></i> ${estadoTexto}</span>`;
+            }
+
             document.getElementById('asignado').innerText = equipoEncontrado[5] ? equipoEncontrado[5].trim() : 'N/A';
-            document.getElementById('historial').innerText = equipoEncontrado[6] ? equipoEncontrado[6].trim() : 'N/A';
+            document.getElementById('historial').innerText = equipoEncontrado[6] ? equipoEncontrado[6].trim() : 'Sin eventos registrados.';
 
             const caracteristicas = equipoEncontrado[7] ? equipoEncontrado[7].trim() : 'Sin características registradas.';
-            document.getElementById('caracteristicas').innerHTML = `<p style="white-space: pre-line; margin: 0;">${caracteristicas}</p>`;
+            document.getElementById('caracteristicas').innerHTML = `<p style="white-space: pre-line; margin: 0; font-size: 0.95rem;">${caracteristicas}</p>`;
 
             document.getElementById('monitores').innerText = equipoEncontrado[8] ? equipoEncontrado[8].trim() : 'N/A';
             document.getElementById('perifericos').innerText = equipoEncontrado[9] ? equipoEncontrado[9].trim() : 'N/A';
+
+            // Cargar y dar formato al Software (Columna K / Indice 10)
+            const softwareRaw = equipoEncontrado[10] ? equipoEncontrado[10].trim() : '';
+            if (softwareRaw && softwareRaw.toUpperCase() !== 'N/A') {
+              const programas = softwareRaw.split(',').map(s => s.trim());
+              const softwareHTML = programas.map(sw => 
+                `<span class="software-tag"><i class="fa-solid fa-check text-success"></i> ${sw}</span>`
+              ).join('');
+              document.getElementById('software-container').innerHTML = softwareHTML;
+            } else {
+              document.getElementById('software-container').innerHTML = '<p class="text-muted mb-0">Sin software o programas registrados para este equipo.</p>';
+            }
+
           } else {
             document.getElementById('tipoEquipo').innerText = "Equipo no encontrado";
+            document.getElementById('subtitulo').innerText = "No se localizó el identificador en el inventario.";
           }
         }
       });
